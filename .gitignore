@@ -1,0 +1,22 @@
+# Eclipse specific files
+.metadata/
+.classpath
+.project
+.settings/
+*.launch
+
+# Build and Output directories
+bin/
+target/
+build/
+
+# Compiled Java files
+*.class
+
+# Enterprise Packages (only share the source code, not the built files)
+*.war
+*.ear
+*.jar
+
+# Log files
+*.log
