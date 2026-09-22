@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <jsp:include page="/publica/publica-nav.jsp" />
+    <jsp:include page="/WEB-INF/includes/nav.jsp" />
 
     <div class="container mt-4">
         <!-- 2. Substitua o h1 atual por: -->
