@@ -12,7 +12,7 @@
 
 		<div class="navbar-nav">
 			<a class="nav-link"
-				href="${pageContext.request.contextPath}/aluno?acao=aluno"> Área do aluno
+				href="${pageContext.request.contextPath}/estudante?acao=estudante"> Área do estutante
 			</a> 
 		</div>
 
@@ -23,19 +23,19 @@
 			<ul class="dropdown-menu dropdown-menu-end">
 				<li><a class="list-group-item list-group-item-action"
 					href="${pageContext.request.contextPath}/i18n?lingua=pt_BR"> <fmt:message
-							key="publica-nav.ingles" />
+							key="publica-nav.portugues" />
 				</a></li>
 				<li><a class="list-group-item list-group-item-action"
 					href="${pageContext.request.contextPath}/i18n?lingua=es_ES"> <fmt:message
-							key="publica-nav.portugues" />
+							key="publica-nav.espanhol" />
 				</a></li>
 				<li><a class="list-group-item list-group-item-action"
 					href="${pageContext.request.contextPath}/i18n?lingua=en_US"> <fmt:message
-							key="publica-nav.portugues" />
+							key="publica-nav.ingles" />
 				</a></li>
 				<li><a class="list-group-item list-group-item-action"
 					href="${pageContext.request.contextPath}/i18n?lingua=fr_FR"> <fmt:message
-							key="publica-nav.portugues" />
+							key="publica-nav.frances" />
 				</a></li>
 			</ul>
 		</div>
