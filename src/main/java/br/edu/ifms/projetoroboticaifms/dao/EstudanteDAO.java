@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.edu.ifms.projetoroboticaifms.dao.util.Conexao;
@@ -45,7 +44,7 @@ public class EstudanteDAO {
 
       statement.setString(1, estudante.getNome());
       statement.setString(2, estudante.getMinibio());
-      statement.setString(4, estudante.getFoto());
+      statement.setString(3, estudante.getFoto());
       statement.executeUpdate();
 
       try (ResultSet generatedKeys = statement.getGeneratedKeys()) {

@@ -5,7 +5,7 @@
         auth="Container"
         type="javax.sql.DataSource"
         username="postgres"
-        password="postgresql"
+        password="12345"
         driverClassName="org.postgresql.Driver"
         url="jdbc:postgresql://localhost:5432/projeto_robotica"
         maxTotal="20" maxIdle="10" maxWaitMillis="10000" />
