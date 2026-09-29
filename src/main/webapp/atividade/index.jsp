@@ -50,6 +50,7 @@
 							<th>Data de Término</th>
 							<th>Situação</th>
 							<th>Coordenador</th>
+							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -63,6 +64,13 @@
 								<td><c:out value="${atividade.getDataFim()}" /></td>
 								<td><c:out value="${atividade.getSituacao()}" /></td>
 								<td><c:out value="${atividade.getCoordenadorId()}" /></td>
+								<td>
+									<a href="${pageContext.request.contextPath}/atividade?acao=excluir&id=${atividade.getId()}"
+										class="btn btn-danger btn-sm"
+										onclick="return confirm('A atividade ${atividade.getTitulo()} será excluída permanetemente.');">
+										Excluir 
+									</a>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.edu.ifms.projetoroboticaifms.dao.AtividadeDAO;
 import br.edu.ifms.projetoroboticaifms.model.Atividade;
+import br.edu.ifms.projetoroboticaifms.model.Estudante;
 
 @WebServlet("/atividade")
 @MultipartConfig
@@ -61,6 +62,9 @@ public class AtividadeController extends HttpServlet {
 			        	break;
 			        case "inserir":
 			        	gravarAtividade(request, response);
+			        	break;
+			        case "excluir":
+			        	apagarAtividade(request, response);
 			        	break;
 			  }  
 		  } catch (Exception ex) {
@@ -112,6 +116,23 @@ public class AtividadeController extends HttpServlet {
 	  }
 	
 	  private void apagarAtividade(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		  //
+		  try {
+		      long id = Long.parseLong(request.getParameter("id"));
+
+		      Atividade atividade = new Atividade();
+		      atividade.setId(id);
+
+		      atividadeDAO.excluir(atividade);
+
+		      String mensagem = "Atividade excluida com sucesso";
+
+		      String path = request.getContextPath() + request.getServletPath() + "?acao=atividade&msg=";
+
+		      response.sendRedirect(path + mensagem);
+
+		    } catch (SQLException e) {
+		      getServletContext().log("Erro ao apagar atividade", e);
+		      response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Não foi possível apagar a atividade.");
+		    }
 	  }
 }
