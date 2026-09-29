@@ -100,7 +100,21 @@ public class AtividadeDAO {
 		  return listaAtividades;
 	  }
 
-	  //public boolean excluir(Atividade atividade) throws SQLException {
-			  //
-	  //}
+	  public boolean excluir(Atividade atividade) throws SQLException {
+		  String sql = "DELETE FROM atividade WHERE id = ?";
+
+		  conectar();
+
+		  try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			  statement.setLong(1, atividade.getId());
+
+			  return statement.executeUpdate() > 0;
+
+		  } catch (SQLException e) {
+			  throw new SQLException("Erro ao apagar a atividade de ID " + atividade.getId(), e);
+
+		  } finally {
+			  desconectar();
+		  }
+	  }
 }
