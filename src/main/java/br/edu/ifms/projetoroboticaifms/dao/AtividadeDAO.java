@@ -30,7 +30,38 @@ public class AtividadeDAO {
 	  }
 	  
 	  public Atividade inserirAtividade(Atividade atividade) throws SQLException {
-		  //
+		  String sql = "INSERT INTO atividade (titulo, tipo, descricao, data_inicio, data_fim, situacao, coordenador_id) "
+		  		+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+		  PreparedStatement statement = null;	
+
+		  try {
+			  conectar();
+		      statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+		      statement.setString(1, atividade.getTitulo());
+		      statement.setString(2, atividade.getTipo());
+		      statement.setString(3, atividade.getDescricao());
+		      statement.setString(4, atividade.getDataInicio());
+		      statement.setString(5, atividade.getDataFim());
+		      statement.setString(6, atividade.getSituacao());
+		      statement.setString(7, atividade.getCoordenadorId());
+		      statement.executeUpdate();
+
+		      try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+		    	  if (generatedKeys.next()) {
+		    		  atividade.setId(generatedKeys.getLong(1));
+		    	  }
+		      	}
+
+		      	return atividade;
+
+		  } finally {
+			  if (statement != null) {
+				  statement.close();
+			  }
+			  desconectar();
+		  }
 	  }
 	  
 	  public List<Atividade> listarTodasAtividades() throws SQLException {
