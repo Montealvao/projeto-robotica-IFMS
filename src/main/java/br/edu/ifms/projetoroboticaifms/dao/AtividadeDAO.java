@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ifms.projetoroboticaifms.controller.Date;
+import br.edu.ifms.projetoroboticaifms.controller.Long;
+import br.edu.ifms.projetoroboticaifms.controller.String;
 import br.edu.ifms.projetoroboticaifms.model.Atividade;
 
 
@@ -65,7 +68,37 @@ public class AtividadeDAO {
 	  }
 	  
 	  public List<Atividade> listarTodasAtividades() throws SQLException {
-			  //
+		  List<Atividade> listaAtividades = new ArrayList<Atividade>();
+
+		  String sql = "SELECT * FROM atividade";
+
+		  conectar();
+
+		  Statement statement = connection.createStatement();
+		  ResultSet resultSet = statement.executeQuery(sql);
+
+		  while (resultSet.next()) {
+			  long id = resultSet.getLong("id");
+			  String titulo = resultSet.getString("titulo");
+		      String tipo = resultSet.getString("tipo");
+		      String descricao = resultSet.getString("descricao");
+		      Date data_inicio = resultSet.getDate("data_inicio");
+			  Date data_fim = resultSet.getDate("data_fim");
+			  String situacao = resultSet.getString("situacao");
+			  Long coordenador_id = resultSet.getLong("coordenador_id");
+
+		      Atividade atividade = new Atividade(titulo, tipo, descricao, data_inicio, data_fim, situacao, coordenador_id);
+
+		      atividade.setId(id);
+		      listaAtividades.add(atividade);
+		  }
+
+		  resultSet.close();
+		  statement.close();
+
+		  desconectar();
+
+		  return listaAtividades;
 	  }
 
 	  public boolean excluir(Atividade atividade) throws SQLException {
