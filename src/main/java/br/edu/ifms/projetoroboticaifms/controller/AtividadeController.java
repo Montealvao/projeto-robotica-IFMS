@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import br.edu.ifms.projetoroboticaifms.dao.AtividadeDAO;
 import br.edu.ifms.projetoroboticaifms.model.Atividade;
@@ -54,20 +53,31 @@ public class AtividadeController extends HttpServlet {
 	  
 		  try {
 			  switch (acao) {
+				  	case "atividade":
+				  		listarAtividades(request, response);
+				  		break;
 			        case "criar":
-			          criarAtividade(request, response);
-			          break;
+			        	criarAtividade(request, response);
+			        	break;
 			        case "inserir":
-			          gravarAtividade(request, response);
-			          break;
-			  	}  
+			        	gravarAtividade(request, response);
+			        	break;
+			  }  
 		  } catch (Exception ex) {
 		      throw new ServletException(ex);  
 		  }
 	  }
 	
 	  private void listarAtividades(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-		  //
+		  List<Atividade> atividades = atividadeDAO.listarTodasAtividades();
+
+		  request.setAttribute("listaAtividades", atividades);
+
+		  String path = request.getServletPath() + "/index.jsp";
+
+		  RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+
+		  dispatcher.forward(request, response);
 	  }
 	
 	  private void criarAtividade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
