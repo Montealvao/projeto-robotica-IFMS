@@ -68,7 +68,7 @@
 
 										<c:otherwise>
 											<img
-												src="${pageContext.request.contextPath}/assets/img/avatar-padrao.png"
+												src="${pageContext.request.contextPath}/resources/img/foto-padrao.jpg"
 												alt="Sem foto"
 												class="rounded-circle object-fit-cover border border-secondary opacity-50"
 												style="width: 50px; height: 50px;">
