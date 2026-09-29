@@ -1,5 +1,7 @@
 package br.edu.ifms.projetoroboticaifms.model;
 
+import java.sql.Date;
+
 public class Atividade {
 	private Long id;
 	private String titulo;
@@ -63,7 +65,7 @@ public class Atividade {
 	}
 	
 	public Date getDataInicio() {
-		return this.data_inicio
+		return this.data_inicio;
 	}
 	
 	public Date setDataIncio(Date data_inicio) {
