@@ -5,9 +5,6 @@
 .settings/
 *.launch
 
-# Database config and Sensitive data
-src/main/webapp/META-INF/context.xml
-
 # Build and Output directories
 bin/
 target/
