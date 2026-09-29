@@ -29,6 +29,39 @@
 		<a class="btn btn-primary mb-3" href="${pageContext.request.contextPath}/atividade?acao=criar">
 			Nova Atividade
 		</a>
+		
+		<c:if test="${not empty listaAtividades}">
+			<div class="table-responsive">
+				<table class="table table-striped table-hover table-bordered">
+					<thead class="table-dark">
+						<tr>
+							<th>Id</th>
+							<th>Título</th>
+							<th>Tipo</th>
+							<th>Descrição</th>
+							<th>Data de Início</th>
+							<th>Data de Término</th>
+							<th>Situação</th>
+							<th>Coordenador</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="atividade" items="${listaAtividades}">
+							<tr>
+								<td><c:out value="${atividade.id}" /></td>
+								<td><c:out value="${atividade.titulo}" /></td>
+								<td><c:out value="${atividade.tipo}" /></td>
+								<td><c:out value="${atividade.descricao}" /></td>
+								<td><c:out value="${atividade.data_inicio}" /></td>
+								<td><c:out value="${atividade.data_fim}" /></td>
+								<td><c:out value="${atividade.situacao}" /></td>
+								<td><c:out value="${atividade.coordenador_id}" /></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</c:if>
 	</div>
 
 	<script src="${pageContext.request.contextPath}/resources/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
