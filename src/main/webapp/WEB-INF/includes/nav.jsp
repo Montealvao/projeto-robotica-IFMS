@@ -12,8 +12,11 @@
 
 		<div class="navbar-nav">
 			<a class="nav-link"
-				href="${pageContext.request.contextPath}/estudante?acao=estudante"> Área do estutante
+				href="${pageContext.request.contextPath}/estudante?acao=estudante"> Área do estudante
 			</a> 
+			<a class="nav-link"
+				href="${pageContext.request.contextPath}/atividade?acao=atividade"> Atividades
+			</a>
 		</div>
 
 		<div class="btn-group">
