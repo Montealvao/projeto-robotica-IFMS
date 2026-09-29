@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/css/bootstrap.min.css">
 </head>
 <body>
+	<jsp:include page="/WEB-INF/includes/nav.jsp" />
 
     <div class="container mt-4">
         <div class="row">
@@ -18,7 +19,6 @@
         </div>
     </div>
 	
-	<jsp:include page="/publica/publica-nav.jsp" />
 
     <script src="${pageContext.request.contextPath}/resources/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
