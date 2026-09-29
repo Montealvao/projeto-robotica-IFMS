@@ -25,6 +25,13 @@
 				</button>
 			</div>
 		</c:if>
+		
+		<c:if test="${empty listaAtividades}">
+			<div class="alert alert-info" role="alert">
+				Nenhuma atividade foi cadastrada até o momento.
+			</div>
+
+		</c:if>
 
 		<a class="btn btn-primary mb-3" href="${pageContext.request.contextPath}/atividade?acao=criar">
 			Nova Atividade
@@ -48,14 +55,14 @@
 					<tbody>
 						<c:forEach var="atividade" items="${listaAtividades}">
 							<tr>
-								<td><c:out value="${atividade.id}" /></td>
-								<td><c:out value="${atividade.titulo}" /></td>
-								<td><c:out value="${atividade.tipo}" /></td>
-								<td><c:out value="${atividade.descricao}" /></td>
-								<td><c:out value="${atividade.data_inicio}" /></td>
-								<td><c:out value="${atividade.data_fim}" /></td>
-								<td><c:out value="${atividade.situacao}" /></td>
-								<td><c:out value="${atividade.coordenador_id}" /></td>
+								<td><c:out value="${atividade.getId()}" /></td>
+								<td><c:out value="${atividade.getTitulo()}" /></td>
+								<td><c:out value="${atividade.getTipo()}" /></td>
+								<td><c:out value="${atividade.getDescricao()}" /></td>
+								<td><c:out value="${atividade.getDataInicio()}" /></td>
+								<td><c:out value="${atividade.getDataFim()}" /></td>
+								<td><c:out value="${atividade.getSituacao()}" /></td>
+								<td><c:out value="${atividade.getCoordenadorId()}" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>
