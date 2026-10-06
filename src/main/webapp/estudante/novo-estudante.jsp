@@ -19,7 +19,7 @@
 	<div class="container mt-4">
 		<!-- 2. Substitua o h1 atual por: -->
 		<h1>
-			Novo estudante
+			<fmt:message key="estudante.titulo.criar" />
 		</h1>
 
 		<!-- Mensagem enviada pelo Servlet -->
@@ -36,21 +36,27 @@
 		<form action="${pageContext.request.contextPath}/estudante?acao=inserir"
 			method="post" enctype="multipart/form-data">
 			<div class="mb-3">
-				<label class="form-label">Nome</label> <input type="text"
-					name="nome" class="form-control">
+				<label class="form-label">
+					<fmt:message key="estudante.coluna.nome" />
+				</label> 
+				<input type="text" name="nome" class="form-control">
 			</div>
 			<div class="mb-3">
-				<label class="form-label">Mini-biografia</label> <input type="text"
-					name="minibio" class="form-control">
+				<label class="form-label">
+					<fmt:message key="estudante.coluna.minibio" />
+				</label> 
+				<input type="text" name="minibio" class="form-control">
 			</div>
 			<div class="mb-3">
-				<label for="foto" class="form-label">Foto</label> <input
-					type="file" class="form-control" id="foto" name="foto"
+				<label for="foto" class="form-label">
+					<fmt:message key="estudante.coluna.foto" />
+				</label> 
+				<input type="file" class="form-control" id="foto" name="foto"
 					accept="image/png, image/jpeg, image/jpg">
 			</div>
 			<!-- 4. Substitua o botão Gravar por: -->
 			<button type="submit" class="btn btn-primary">
-				Salvar
+				<fmt:message key="estudante.botao.salvar" />
 			</button>
 		</form>
 	</div>
