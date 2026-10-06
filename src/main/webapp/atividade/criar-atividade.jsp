@@ -1,20 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 1. Logo após a taglib c, adicione: -->
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>Cadastro de Atividades</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-</head>
-<body>
-
-	<jsp:include page="/WEB-INF/includes/nav.jsp" />
+<t:layout titulo="nova-atividade">
 
 	<div class="container mt-4">
 		<!-- 2. Substitua o h1 atual por: -->
@@ -70,9 +58,9 @@
 		</form>
 	</div>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+
+    
+    <jsp:include page="/WEB-INF/includes/footer.jsp" />
+
+</t:layout>
