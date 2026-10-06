@@ -1,14 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Projeto de Robótica</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-</head>
-<body>
-	<jsp:include page="/WEB-INF/includes/nav.jsp" />
+<t:layout titulo="index">
 
     <div class="container mt-4">
         <div class="row">
@@ -18,9 +11,7 @@
             </div>
         </div>
     </div>
-	
+    
+    <jsp:include page="/WEB-INF/includes/footer.jsp" />
 
-    <script src="${pageContext.request.contextPath}/resources/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</t:layout>

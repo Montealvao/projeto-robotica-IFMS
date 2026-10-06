@@ -107,7 +107,7 @@ public class EstudanteController extends HttpServlet {
 
     request.setAttribute("listaEstudantes", estudantes);
 
-    String path = request.getServletPath() + "/home-estudante.jsp";
+    String path = request.getServletPath() + "/index.jsp";
 
     RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 
