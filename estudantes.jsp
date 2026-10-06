@@ -1,0 +1,205 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estudantes — Laboratório de Robótica IFMS CG</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="css/robotica.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ================= MENU ================= -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fa-solid fa-microchip dot me-1"></i> ROBÓTICA<span class="dot">.</span>IFMS <small class="text-muted-2 fw-normal">CG</small>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Alternar menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">Estudantes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Atividades</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Participações</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-gear me-1"></i>Gerenciar
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-plus me-2"></i>Novo estudante</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-diagram-project me-2"></i>Nova atividade</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-link me-2"></i>Associar participação</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-table-list me-2"></i>Manutenção de estudantes</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-table-list me-2"></i>Manutenção de atividades</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown ms-lg-2">
+            <a class="btn btn-sm lang-btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-globe me-1"></i>PT
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">🇧🇷 Português</a></li>
+              <li><a class="dropdown-item" href="#">🇺🇸 English</a></li>
+              <li><a class="dropdown-item" href="#">🇪🇸 Español</a></li>
+              <li><a class="dropdown-item" href="#">🇫🇷 Français</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= CABEÇALHO DA PÁGINA ================= -->
+  <header class="page-head circuit-bg">
+    <div class="container">
+      <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">Início</a></li><li class="breadcrumb-item active" aria-current="page">Estudantes</li></ol></nav>
+      <span class="sec-label">// Pessoas</span>
+      <h1>Estudantes</h1>
+      <p>Pessoas que participaram da trajetória do laboratório e as atividades das quais fizeram parte.</p>
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="container">
+      <div class="filter-bar mb-4">
+        <div class="row g-2 align-items-end">
+          <div class="col-md-6"><label for="busca-estudante" class="form-label">Buscar</label><input type="text" class="form-control" id="busca-estudante" placeholder="Nome do estudante"></div>
+          <div class="col-md-4"><label for="filtro-periodo" class="form-label">Período letivo</label><select class="form-select" id="filtro-periodo"><option>Todos</option><option>2026/2</option><option>2026/1</option><option>2025/2</option><option>2025/1</option></select></div>
+          <div class="col-md-2 d-grid"><button type="button" class="btn btn-neon"><i class="fa-solid fa-magnifying-glass me-1"></i>Filtrar</button></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="tcard d-flex gap-3">
+            <div class="avatar flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <h4>Nome do estudante</h4>
+              <p>Minibio curta do estudante, curso e área de atuação no laboratório.</p>
+              <div class="mt-2"><span class="badge badge-type px-2 py-1">3 atividades</span></div>
+              <a href="#" class="small d-inline-block mt-2">Ver perfil</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="tcard d-flex gap-3">
+            <div class="avatar flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <h4>Nome do estudante</h4>
+              <p>Minibio curta do estudante, curso e área de atuação no laboratório.</p>
+              <div class="mt-2"><span class="badge badge-type px-2 py-1">3 atividades</span></div>
+              <a href="#" class="small d-inline-block mt-2">Ver perfil</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="tcard d-flex gap-3">
+            <div class="avatar flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <h4>Nome do estudante</h4>
+              <p>Minibio curta do estudante, curso e área de atuação no laboratório.</p>
+              <div class="mt-2"><span class="badge badge-type px-2 py-1">3 atividades</span></div>
+              <a href="#" class="small d-inline-block mt-2">Ver perfil</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="tcard d-flex gap-3">
+            <div class="avatar flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <h4>Nome do estudante</h4>
+              <p>Minibio curta do estudante, curso e área de atuação no laboratório.</p>
+              <div class="mt-2"><span class="badge badge-type px-2 py-1">3 atividades</span></div>
+              <a href="#" class="small d-inline-block mt-2">Ver perfil</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="tcard d-flex gap-3">
+            <div class="avatar flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <h4>Nome do estudante</h4>
+              <p>Minibio curta do estudante, curso e área de atuação no laboratório.</p>
+              <div class="mt-2"><span class="badge badge-type px-2 py-1">3 atividades</span></div>
+              <a href="#" class="small d-inline-block mt-2">Ver perfil</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="tcard d-flex gap-3">
+            <div class="avatar flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <h4>Nome do estudante</h4>
+              <p>Minibio curta do estudante, curso e área de atuação no laboratório.</p>
+              <div class="mt-2"><span class="badge badge-type px-2 py-1">3 atividades</span></div>
+              <a href="#" class="small d-inline-block mt-2">Ver perfil</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="mt-4" aria-label="Paginação">
+        <ul class="pagination justify-content-center mb-0">
+          <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Próxima</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </section>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="circuit-bg">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <h5><i class="fa-solid fa-microchip me-2" style="color:var(--neon)"></i>Laboratório de Robótica</h5>
+          <p class="mt-3 mb-2">Instituto Federal de Mato Grosso do Sul<br>Campus Campo Grande</p>
+          <a href="https://www.instagram.com/robotican.cg" target="_blank" rel="noopener" class="btn btn-outline-neon btn-sm mt-2">
+            <i class="fa-brands fa-instagram me-1"></i> @robotican.cg
+          </a>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h5>Navegação</h5>
+          <ul class="list-unstyled mt-3 mb-0">
+            <li class="mb-1"><a href="#">Início</a></li>
+            <li class="mb-1"><a href="#">Sobre</a></li>
+            <li class="mb-1"><a href="#">Estudantes</a></li>
+            <li class="mb-1"><a href="#">Atividades</a></li>
+            <li class="mb-1"><a href="#">Contato</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-4">
+          <h5>Idiomas</h5>
+          <ul class="list-unstyled mt-3 mb-0">
+            <li class="mb-1"><a href="#">Português</a></li>
+            <li class="mb-1"><a href="#">English</a></li>
+            <li class="mb-1"><a href="#">Español</a></li>
+            <li class="mb-1"><a href="#">Français</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="d-flex flex-wrap justify-content-between gap-2 small">
+        <span>© 2026 Laboratório de Robótica — IFMS Campo Grande</span>
+        <span>Desenvolvido por <strong class="text-white">Integrante 1</strong> e <strong class="text-white">Integrante 2</strong> · TSI · Linguagem de Programação II</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
