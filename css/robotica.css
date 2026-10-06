@@ -159,7 +159,6 @@
     .form-check-input { background-color: var(--bg); border-color: var(--line); }
     .form-check-input:checked { background-color: var(--neon); border-color: var(--neon); }
     .form-check-label { color: var(--text); }
-    .form-select { --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2319e6b4' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); }
     .side-note { border-left: 2px solid var(--amber); background: rgba(255,181,71,.07); padding: 1rem 1.2rem; font-size: .9rem; color: var(--muted); }
     .side-note strong { color: var(--amber); font-weight: 500; }
 
@@ -167,7 +166,7 @@
     .filter-bar { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 1rem 1.2rem; }
 
     /* ===== Tabelas ===== */
-    .table-tech { --bs-table-bg: transparent; --bs-table-color: var(--text); --bs-table-border-color: var(--line); --bs-table-hover-bg: var(--neon-dim); --bs-table-hover-color: #fff; margin-bottom: 0; }
+    .table-tech { color: var(--text); border-color: var(--line); --bs-table-bg: transparent; --bs-table-hover-bg: var(--neon-dim); --bs-table-hover-color: #fff; margin-bottom: 0; }
     .table-tech thead th { font-family: 'Chakra Petch', sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--neon); background: #0f1317; border-bottom: 1px solid rgba(25,230,180,.35); font-weight: 600; }
     .table-tech td, .table-tech th { padding: .85rem 1rem; vertical-align: middle; }
     .table-wrap { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
@@ -178,7 +177,6 @@
     .btn-ghost:hover { border-color: var(--neon); color: var(--neon); }
 
     /* ===== Paginação ===== */
-    .pagination { --bs-pagination-bg: var(--panel); --bs-pagination-border-color: var(--line); --bs-pagination-color: var(--text); --bs-pagination-hover-bg: var(--neon-dim); --bs-pagination-hover-color: var(--neon); --bs-pagination-hover-border-color: var(--neon); --bs-pagination-active-bg: var(--neon); --bs-pagination-active-border-color: var(--neon); --bs-pagination-active-color: #05241c; --bs-pagination-disabled-bg: var(--bg-2); --bs-pagination-disabled-border-color: var(--line); --bs-pagination-focus-bg: var(--neon-dim); --bs-pagination-focus-color: var(--neon); --bs-pagination-focus-box-shadow: none; }
 
     /* ===== Mensagens (alerts) ===== */
     .alert { border-radius: 3px; font-size: .92rem; }
@@ -206,3 +204,18 @@
     .info-row strong { color: #fff; display: block; font-weight: 500; }
     .info-row span { color: var(--muted); font-size: .92rem; }
     .error-code { font-family: 'Chakra Petch', sans-serif; font-size: clamp(4rem, 12vw, 7rem); color: var(--neon); font-weight: 700; line-height: 1; text-shadow: 0 0 24px rgba(25,230,180,.35); }
+
+
+    /* ===== Compatibilidade com Bootstrap 5.1.3 ===== */
+    .table-tech > :not(caption) > * > * { color: inherit; border-color: var(--line); }
+    .table-tech.table-hover > tbody > tr:hover > * { color: #fff; }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2319e6b4' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    }
+    .form-select option { background: var(--bg); color: var(--text); }
+    .page-link { background: var(--panel); border-color: var(--line); color: var(--text); }
+    .page-link:hover, .page-link:focus { background: var(--neon-dim); border-color: var(--neon); color: var(--neon); box-shadow: none; }
+    .page-item.active .page-link { background: var(--neon); border-color: var(--neon); color: #05241c; }
+    .page-item.disabled .page-link { background: var(--bg-2); border-color: var(--line); color: #4d5964; }
+    .breadcrumb-item + .breadcrumb-item::before { color: var(--muted); }
+    .alert-success .btn-close, .alert-danger .btn-close { filter: invert(1) grayscale(1); }
