@@ -68,6 +68,16 @@
       isolation: isolate;
       background-color: var(--bg);
     }
+    
+	body {
+	  min-height: 100vh;
+	  display: flex;
+	  flex-direction: column;
+	}
+	
+	footer {
+	  margin-top: auto;
+	}
     .circuit-bg::before {
       content: "";
       position: absolute; inset: 0; z-index: -1;

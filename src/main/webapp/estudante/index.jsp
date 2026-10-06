@@ -1,21 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
- --%>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>Listagem de Estudantes</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-</head>
-<body>
-	<jsp:include page="/WEB-INF/includes/nav.jsp" />
+<t:layout titulo="pagina-estudantes">
 
-	<div class="container mt-4">
+   <div class="container mt-4">
 		<h2 class="mb-3">Pagina dos estudantes</h2>
 
 		<c:if test="${not empty param.msg}">
@@ -91,14 +80,7 @@
 
 		</c:if>
 	</div>
+    
+    <jsp:include page="/WEB-INF/includes/footer.jsp" />
 
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery-3.6.0-dist/jquery-3.6.0.min.js">
-		
-	</script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js">
-		
-	</script>
-</body>
-</html>
+</t:layout>
