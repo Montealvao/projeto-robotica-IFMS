@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <t:layout titulo="listagem-atividades">
 	<div class="container mt-4">
-		<h2 class="mb-3">Atividades</h2>
+		<h2 class="mb-3">
+			<fmt:message key="atividade.titulo.listar" />
+		</h2>
 
 		<c:if test="${not empty param.msg}">
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -16,13 +19,13 @@
 		
 		<c:if test="${empty listaAtividades}">
 			<div class="alert alert-info" role="alert">
-				Nenhuma atividade foi cadastrada até o momento.
+				<fmt:message key="estudante.titulo.sem_cadastro" />
 			</div>
 
 		</c:if>
 
 		<a class="btn btn-primary mb-3" href="${pageContext.request.contextPath}/atividade?acao=criar">
-			Nova Atividade
+			<fmt:message key="atividade.titulo.criar" />
 		</a>
 		
 		<c:if test="${not empty listaAtividades}">
@@ -30,15 +33,15 @@
 				<table class="table table-striped table-hover table-bordered">
 					<thead class="table-dark">
 						<tr>
-							<th>Id</th>
-							<th>Título</th>
-							<th>Tipo</th>
-							<th>Descrição</th>
-							<th>Data de Início</th>
-							<th>Data de Término</th>
-							<th>Situação</th>
-							<th>Coordenador</th>
-							<th>Ações</th>
+							<th><fmt:message key="atividade.coluna.id" /></th>
+							<th><fmt:message key="atividade.coluna.titulo" /></th>
+							<th><fmt:message key="atividade.coluna.tipo" /></th>
+							<th><fmt:message key="atividade.coluna.descricao" /></th>
+							<th><fmt:message key="atividade.coluna.data_inicio" /></th>
+							<th><fmt:message key="atividade.coluna.data_fim" /></th>
+							<th><fmt:message key="atividade.coluna.situacao" /></th>
+							<th><fmt:message key="atividade.coluna.coordenador_id" /></th>
+							<th><fmt:message key="atividade.coluna.acoes" /></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,7 +59,7 @@
 									<a href="${pageContext.request.contextPath}/atividade?acao=excluir&id=${atividade.getId()}"
 										class="btn btn-danger btn-sm"
 										onclick="return confirm('A atividade ${atividade.getTitulo()} será excluída permanetemente.');">
-										Excluir 
+										<fmt:message key="atividade.botao.apagar" />
 									</a>
 								</td>
 							</tr>

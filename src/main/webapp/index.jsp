@@ -6,8 +6,8 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col">
-                <h1>Projeto de Robótica</h1>
-                <p class="text-muted">Aplicação Java Web em desenvolvimento.</p>
+<!--                 <h1>Projeto de Robótica</h1> -->
+<!--                 <p class="text-muted">Aplicação Java Web em desenvolvimento.</p> -->
             </div>
         </div>
     </div>
