@@ -1,26 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Projeto de Robótica</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-</head>
-<body>
-	<jsp:include page="/WEB-INF/includes/nav.jsp" />
+<t:layout titulo="index">
+
+    <jsp:include page="/WEB-INF/includes/header.jsp" />
 
     <div class="container mt-4">
         <div class="row">
             <div class="col">
-                <h1>Projeto de Robótica</h1>
-                <p class="text-muted">Aplicação Java Web em desenvolvimento.</p>
+               <h1>Projeto de Robótica</h1> 
+               <p class="text-muted">Aplicação Java Web em desenvolvimento.</p>
             </div>
         </div>
     </div>
-	
 
-    <script src="${pageContext.request.contextPath}/resources/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    
+    <jsp:include page="/WEB-INF/includes/footer.jsp" />
+
+</t:layout>
