@@ -12,7 +12,7 @@
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
           <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Estudantes</a></li>
+          <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/estudante?acao=home">Estudantes</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Atividades</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Participações</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>

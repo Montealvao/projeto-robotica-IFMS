@@ -57,7 +57,7 @@ public class EstudanteController extends HttpServlet {
 
     try {
       switch (acao) {
-        case "estudante":
+        case "home":
           listaEstudantes(request, response);
           break;
         case "excluir":
@@ -107,7 +107,7 @@ public class EstudanteController extends HttpServlet {
 
     request.setAttribute("listaEstudantes", estudantes);
 
-    String path = request.getServletPath() + "/home-estudante.jsp";
+    String path = request.getServletPath() + "/index.jsp";
 
     RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 

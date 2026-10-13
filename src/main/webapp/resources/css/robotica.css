@@ -268,3 +268,31 @@
     .page-item.disabled .page-link { background: var(--bg-2); border-color: var(--line); color: #4d5964; }
     .breadcrumb-item + .breadcrumb-item::before { color: var(--muted); }
     .alert-success .btn-close, .alert-danger .btn-close { filter: invert(1) grayscale(1); }
+    
+    /* ===== Aviso informativo e estado vazio (listas sem cadastro) ===== */
+    .alert-info {
+      background: rgba(135,147,160,.08);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--neon);
+      color: var(--text);
+    }
+    .alert-info .alert-link { color: var(--neon); }
+    .alert-warning {
+      background: rgba(255,181,71,.08);
+      border: 1px solid rgba(255,181,71,.4);
+      border-left: 3px solid var(--amber);
+      color: #ffd08a;
+    }
+ 
+    /* Variante maior, centralizada, para listas vazias */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: var(--panel);
+      border: 1px dashed var(--line);
+      border-radius: 3px;
+      color: var(--muted);
+    }
+    .empty-state i { font-size: 2rem; color: var(--neon); opacity: .8; margin-bottom: .8rem; display: block; }
+    .empty-state p { margin: 0; font-size: .95rem; }
+ 
