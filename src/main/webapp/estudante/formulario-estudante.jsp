@@ -12,16 +12,14 @@
 		<div class="container">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Início</a></li>
-					<li class="breadcrumb-item"><a href="#">Gerenciar</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Novo
-						estudante</li>
+					<li class="breadcrumb-item"><a href="#"><fmt:message key="estudante.breadcrumb.inicio" /></a></li>
+					<li class="breadcrumb-item"><a href="#"><fmt:message key="estudante.breadcrumb.gerenciar" /></a></li>
+					<li class="breadcrumb-item active" aria-current="page"><fmt:message key="estudante.breadcrumb.novo" /></li>
 				</ol>
 			</nav>
-			<span class="sec-label">// Gerenciar</span>
-			<h1>Novo estudante</h1>
-			<p>Cadastre uma pessoa que participou da trajetória do
-				laboratório.</p>
+			<span class="sec-label"><fmt:message key="estudante.label.gerenciar" /></span>
+			<h1><fmt:message key="estudante.titulo.novo" /></h1>
+			<p><fmt:message key="estudante.descricao.novo" /></p>
 		</div>
 	</header>
 
@@ -35,18 +33,9 @@
 					<c:out value="${mensagem}" />
 
 					<button type="button" class="btn-close" data-bs-dismiss="alert"
-						aria-label="Fechar"></button>
+						aria-label="<fmt:message key='estudante.botao.fechar' />"></button>
 				</div>
 			</c:if>
-
-
-			<!-- <div class="alert alert-danger alert-dismissible fade show"
-				role="alert">
-				<i class="fa-solid fa-triangle-exclamation me-2"></i>Mensagem de
-				erro de exemplo.
-				<button type="button" class="btn-close" data-bs-dismiss="alert"
-					aria-label="Fechar"></button>
-			</div> -->
 
 			<div class="row g-4">
 				<div class="col-lg-8">
@@ -57,26 +46,25 @@
 							<input type="hidden" id="id-estudante">
 
 							<div class="mb-3">
-								<label for="nome" class="form-label">Nome *</label> <input
-									type="text" class="form-control" id="nome"
-									placeholder="Nome completo" name="nome">
+								<label for="nome" class="form-label"><fmt:message key="estudante.label.nome" /></label> 
+								<input type="text" class="form-control" id="nome"
+									placeholder="<fmt:message key='estudante.placeholder.nome' />" name="nome">
 							</div>
 							<div class="mb-3">
-								<label for="minibio" class="form-label">Minibio</label>
+								<label for="minibio" class="form-label"><fmt:message key="estudante.label.minibio" /></label>
 								<textarea class="form-control" id="minibio" rows="4"
-									placeholder="Apresentação breve do estudante" name="minibio"></textarea>
+									placeholder="<fmt:message key='estudante.placeholder.minibio' />" name="minibio"></textarea>
 							</div>
 							<div class="mb-4">
-								<label for="foto" class="form-label">Foto</label> <input
-									type="file" class="form-control" id="foto" name="foto">
-								<div class="form-text">Imagem do
-									estudante</div>
+								<label for="foto" class="form-label"><fmt:message key="estudante.label.foto" /></label> 
+								<input type="file" class="form-control" id="foto" name="foto">
+								<div class="form-text"><fmt:message key="estudante.help.foto" /></div>
 							</div>
 							<div class="d-flex gap-2">
 								<button type="submit" class="btn btn-neon px-4">
-									<i class="fa-solid fa-floppy-disk me-2"></i>Salvar
+									<i class="fa-solid fa-floppy-disk me-2"></i><fmt:message key="estudante.botao.salvar" />
 								</button>
-								<button type="button" class="btn btn-ghost px-4">Cancelar</button>
+								<button type="button" class="btn btn-ghost px-4"><fmt:message key="estudante.botao.cancelar" /></button>
 							</div>
 						</form>
 
@@ -84,8 +72,8 @@
 				</div>
 				<div class="col-lg-4">
 					<div class="side-note">
-						<strong>Dica</strong><br>Depois de cadastrar o estudante,
-						associe-o a uma atividade em “Associar participação”.
+						<strong><fmt:message key="estudante.dica.titulo" /></strong><br>
+						<fmt:message key="estudante.dica.descricao" />
 					</div>
 				</div>
 			</div>
