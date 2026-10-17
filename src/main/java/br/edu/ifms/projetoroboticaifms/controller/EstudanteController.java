@@ -117,7 +117,7 @@ public class EstudanteController extends HttpServlet {
   private void novoEstudante(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/novo-estudante.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
 
     dispatcher.forward(request, response);
   }
