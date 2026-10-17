@@ -57,7 +57,7 @@ public class EstudanteController extends HttpServlet {
 
     try {
       switch (acao) {
-        case "estudante":
+        case "home":
           listaEstudantes(request, response);
           break;
         case "excluir":
@@ -67,7 +67,7 @@ public class EstudanteController extends HttpServlet {
           novoEstudante(request, response);
           break;
         case "inserir":
-          gravarEstudante(request, response);
+          salvarEstudante(request, response);
           break;
       }
     } catch (Exception ex) {
@@ -107,7 +107,7 @@ public class EstudanteController extends HttpServlet {
 
     request.setAttribute("listaEstudantes", estudantes);
 
-    String path = request.getServletPath() + "/home-estudante.jsp";
+    String path = request.getServletPath() + "/index.jsp";
 
     RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 
@@ -117,12 +117,12 @@ public class EstudanteController extends HttpServlet {
   private void novoEstudante(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/novo-estudante.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
 
     dispatcher.forward(request, response);
   }
 
-  private void gravarEstudante(HttpServletRequest request, HttpServletResponse response)
+  private void salvarEstudante(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     String nome = request.getParameter("nome");
     String minibio = request.getParameter("minibio");
@@ -132,7 +132,9 @@ public class EstudanteController extends HttpServlet {
     novoEstudante.setMinibio(minibio);
 
     Part filePart = request.getPart("foto");
+        
     String caminhoParaBanco = null;
+    
 
     if (filePart != null && filePart.getSize() > 0) {
       String fileName =
@@ -163,7 +165,7 @@ public class EstudanteController extends HttpServlet {
 
     request.setAttribute("mensagem", "Estudante gravado com sucesso!");
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/novo-estudante.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
     dispatcher.forward(request, response);
   }
 }
