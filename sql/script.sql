@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS projeto_robotica
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
-USE portal_robotica;
+USE projeto_robotica;
 
 CREATE TABLE estudante (
     id SERIAL PRIMARY KEY,
