@@ -22,7 +22,7 @@
               <i class="fa-solid fa-gear me-1"></i>Gerenciar
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-plus me-2"></i>Novo estudante</a></li>
+              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/estudante?acao=novo"><i class="fa-solid fa-user-plus me-2"></i>Novo estudante</a></li>
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-diagram-project me-2"></i>Nova atividade</a></li>
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-link me-2"></i>Associar participação</a></li>
               <li><hr class="dropdown-divider"></li>

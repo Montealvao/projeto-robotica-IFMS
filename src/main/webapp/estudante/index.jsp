@@ -55,9 +55,7 @@
 				<c:if test="${empty listaEstudantes}">
 					<div class="empty-state">
 						<i class="fa-regular fa-folder-open"></i>
-						<p>
-							<fmt:message key="atividade.titulo.sem_cadastro" />
-						</p>
+						<p>Nenhum estudante cadastrado.</p>
 					</div>
 				</c:if>
 
@@ -65,12 +63,28 @@
 					<c:forEach var="estudante" items="${listaEstudantes}">
 						<div class="col-md-6 col-lg-4">
 							<div class="tcard d-flex gap-3">
-								<div class="avatar flex-shrink-0">
-									<i class="fa-solid fa-user"></i>
-								</div>
+								<c:choose>
+									<c:when test="${not empty estudante.foto}">
+										<img
+											src="${pageContext.request.contextPath}/${estudante.foto}"
+											alt="<c:out value='${estudante.nome}'/>"
+											class="rounded-circle object-fit-cover border border-secondary"
+											style="width: 50px; height: 50px;">
+									</c:when>
+									<c:otherwise>
+										<div class="avatar flex-shrink-0">
+											<i class="fa-solid fa-user"></i>
+										</div>
+									</c:otherwise>
+								</c:choose>
+
 								<div>
-									<h4><c:out value="${estudante.nome }"></c:out></h4>
-									<p><c:out value="${estudante.minibio }"></c:out></p>
+									<h4>
+										<c:out value="${estudante.nome }"></c:out>
+									</h4>
+									<p>
+										<c:out value="${estudante.minibio }"></c:out>
+									</p>
 									<div class="mt-2">
 										<span class="badge badge-type px-2 py-1">3 atividades</span>
 									</div>
