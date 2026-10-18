@@ -16,7 +16,6 @@ import javax.servlet.http.Part;
 import br.edu.ifms.projetoroboticaifms.dao.EstudanteDAO;
 import br.edu.ifms.projetoroboticaifms.model.Estudante;
 
-/** Servlet implementation class EstudanteController */
 @WebServlet("/estudante")
 @MultipartConfig
 public class EstudanteController extends HttpServlet {
@@ -63,6 +62,9 @@ public class EstudanteController extends HttpServlet {
         case "excluir":
           apagarEstudante(request, response);
           break;
+        case "admin-estudante":
+        	manutencaoEstudante(request, response);
+        	break;
         case "novo":
           novoEstudante(request, response);
           break;
@@ -75,23 +77,35 @@ public class EstudanteController extends HttpServlet {
     }
   }
 
-  private void apagarEstudante(HttpServletRequest request, HttpServletResponse response)
+  private void manutencaoEstudante(HttpServletRequest request,HttpServletResponse response)throws SQLException, ServletException, IOException{
+	  List<Estudante> estudantes = estudanteDAO.listarTodosEstudantes();
+
+	    request.setAttribute("listaEstudantes", estudantes);
+
+	    String path = request.getServletPath() + "/manutencao-estudante.jsp";
+
+	    RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+
+	    dispatcher.forward(request, response);
+}
+
+private void apagarEstudante(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
 
     try {
       long id = Long.parseLong(request.getParameter("id"));
+      System.out.println("id do estudante: " + id ); 
 
       Estudante estudante = new Estudante();
       estudante.setId(id);
 
       estudanteDAO.excluir(estudante);
 
-      String mensagem = "Estudante excluido com sucesso";
-
-      String path = request.getContextPath() + request.getServletPath() + "?acao=estudante&msg=";
-
-      response.sendRedirect(path + mensagem);
-
+      request.getSession().setAttribute("mensagemSucesso", "Estudante excluído com sucesso!");
+      
+      String pathListagem = request.getContextPath() + "/estudante?acao=admin-estudante";
+      response.sendRedirect(pathListagem);
+      
     } catch (SQLException e) {
       getServletContext().log("Erro ao apagar estudante", e);
 

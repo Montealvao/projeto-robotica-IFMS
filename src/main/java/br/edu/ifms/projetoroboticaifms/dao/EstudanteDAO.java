@@ -97,7 +97,8 @@ public class EstudanteDAO {
   }
 
   public boolean excluir(Estudante estudante) throws SQLException {
-    String sql = "DELETE FROM estudante WHERE id = ?";
+   
+	  String sql = "DELETE FROM estudante WHERE id = ?";
 
     conectar();
 
