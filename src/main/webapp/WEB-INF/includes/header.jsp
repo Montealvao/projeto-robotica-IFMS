@@ -38,8 +38,10 @@
 						<li><a class="dropdown-item" href="#"><i
 								class="fa-solid fa-link me-2"></i>Associar participação</a></li>
 						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/estudante?acao=admin-estudante"><i
+						<li><a class="dropdown-item"
+							href="${pageContext.request.contextPath}/estudante?acao=admin-estudante"><i
 								class="fa-solid fa-table-list me-2"></i>Manutenção de estudantes</a></li>
+								
 						<li><a class="dropdown-item" href="#"><i
 								class="fa-solid fa-table-list me-2"></i>Manutenção de atividades</a></li>
 					</ul></li>
