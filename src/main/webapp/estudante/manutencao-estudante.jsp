@@ -128,36 +128,6 @@
 		</div>
 	</section>
 
-	<!-- Modal de confirmação de exclusão -->
-	<div class="modal fade" id="modal-excluir" tabindex="-1"
-		aria-labelledby="modal-excluir-titulo" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<%-- TODO: o <form> deve enviar por POST (nunca GET) para o servlet de exclusão --%>
-				<form>
-					<div class="modal-header">
-						<h5 class="modal-title" id="modal-excluir-titulo">
-							<i class="fa-solid fa-triangle-exclamation me-2"
-								style="color: var(- -amber)"></i>Confirmar exclusão
-						</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Fechar"></button>
-					</div>
-					<div class="modal-body">
-						<%-- TODO: input hidden com o id; seu valor vem do data-id do botão clicado --%>
-						<input type="hidden" id="id-excluir"> Deseja realmente
-						excluir este estudante? Esta ação não poderá ser desfeita.
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-ghost"
-							data-bs-dismiss="modal">Cancelar</button>
-
-						<button type="submit" class="btn btn-danger-tech">Excluir</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
 
 	<jsp:include page="/WEB-INF/includes/footer.jsp" />
 
