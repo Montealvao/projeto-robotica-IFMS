@@ -1,19 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>Listagem de Estudantes</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-</head>
-<body>
-	<jsp:include page="/WEB-INF/includes/nav.jsp" />
+<t:layout titulo="pagina-estudantes">
+
+	<jsp:include page="/WEB-INF/includes/header.jsp" />
 
 	<div class="container mt-4">
 		<h2 class="mb-3">
@@ -36,8 +29,7 @@
 
 		</c:if>
 
-		<a class="btn btn-primary mb-3"
-			href="${pageContext.request.contextPath}/estudante?acao=novo">
+		<a class="btn btn-primary mb-3" href="${pageContext.request.contextPath}/estudante?acao=novo">
 			<fmt:message key="atividade.titulo.criar" />
 		</a>
 
@@ -81,7 +73,8 @@
 									</c:choose></td>
 								<td>
 <!-- 								<a class="btn btn-dark" -->
-<%-- 									href="${pageContext.request.contextPath}/estudante?acao=editar">Editar</a> --%>
+<%-- 									href="${pageContext.request.contextPath}/estudante?acao=editar">Editar
+									</a> --%>
 
 									<a href="${pageContext.request.contextPath}/estudante?acao=excluir&id=${estudante.id}"
 									class="btn btn-danger btn-sm"
@@ -98,13 +91,6 @@
 		</c:if>
 	</div>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery-3.6.0-dist/jquery-3.6.0.min.js">
-		
-	</script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js">
-		
-	</script>
-</body>
-</html>
+	<jsp:include page="/WEB-INF/includes/footer.jsp" />
+
+</t:layout>
