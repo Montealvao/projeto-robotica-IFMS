@@ -45,9 +45,9 @@
       --line: #28313a;
       --text: #d7dde3;
       --muted: #8793a0;
-      --neon: #19e6b4;          
+      --neon: #19e6b4;          /* acento principal (ciano-esverdeado) */
       --neon-dim: rgba(25, 230, 180, .14);
-      --amber: #ffb547;         
+      --amber: #ffb547;         /* acento secundário, usado com parcimônia */
     }
     html { scroll-behavior: smooth; }
     body {
@@ -63,21 +63,12 @@
     a:hover { color: #6dffd9; }
     .text-muted-2 { color: var(--muted); }
 
+    /* ===== Fundo de circuitos (SVG inline, sem imagem externa) ===== */
     .circuit-bg {
       position: relative;
       isolation: isolate;
       background-color: var(--bg);
     }
-    
-	body {
-	  min-height: 100vh;
-	  display: flex;
-	  flex-direction: column;
-	}
-	
-	footer {
-	  margin-top: auto;
-	}
     .circuit-bg::before {
       content: "";
       position: absolute; inset: 0; z-index: -1;
@@ -85,13 +76,13 @@
       -webkit-mask-image: radial-gradient(ellipse at 75% 30%, #000 0%, transparent 75%);
               mask-image: radial-gradient(ellipse at 75% 30%, #000 0%, transparent 75%);
     }
-    .circuit-bg::after {
+    .circuit-bg::after { /* brilho discreto */
       content: "";
       position: absolute; inset: 0; z-index: -1;
       background: radial-gradient(ellipse at 80% 20%, rgba(25,230,180,.10), transparent 55%);
     }
 
-    /*Navbar*/
+    /* ===== Navbar ===== */
     .navbar {
       background: rgba(11, 13, 16, .92);
       backdrop-filter: blur(6px);
@@ -130,14 +121,14 @@
     }
     .chip i { color: var(--neon); margin-right: .35rem; }
 
-    /*Seções*/
+    /* ===== Seções ===== */
     section.block { padding: 4.5rem 0; border-bottom: 1px solid var(--line); }
     section.alt { background: var(--bg-2); }
     .sec-label { font-family: 'Chakra Petch', sans-serif; font-size: .8rem; color: var(--neon); text-transform: uppercase; letter-spacing: .15em; }
     .sec-title { color: #fff; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.1rem); margin: .25rem 0 .5rem; }
     .sec-title::after { content: ""; display: block; width: 48px; height: 2px; background: var(--neon); margin-top: .7rem; }
 
-    /*Cards*/
+    /* ===== Cards ===== */
     .tcard {
       background: var(--panel); border: 1px solid var(--line); border-radius: 3px;
       padding: 1.4rem; height: 100%; transition: border-color .2s, transform .2s;
@@ -154,7 +145,7 @@
       display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
     }
 
-    /*Linha do tempo*/
+    /* ===== Linha do tempo ===== */
     .timeline { border-left: 1px solid var(--line); margin-left: .5rem; padding-left: 1.6rem; }
     .t-item { position: relative; padding-bottom: 1.6rem; }
     .t-item::before {
@@ -218,7 +209,7 @@
     .table-tech { color: var(--text); border-color: var(--line); --bs-table-bg: transparent; --bs-table-hover-bg: var(--neon-dim); --bs-table-hover-color: #fff; margin-bottom: 0; }
     .table-tech thead th { font-family: 'Chakra Petch', sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--neon); background: #0f1317; border-bottom: 1px solid rgba(25,230,180,.35); font-weight: 600; }
     .table-tech td, .table-tech th { padding: .85rem 1rem; vertical-align: middle; }
-    .table-wrap { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+    .table-wrap { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; overflow-x: auto; }
     .thumb { width: 38px; height: 38px; border-radius: 50%; background: var(--bg); border: 1px solid var(--neon); color: var(--neon); display: inline-flex; align-items: center; justify-content: center; font-size: .9rem; }
     .btn-danger-tech { border: 1px solid rgba(255,90,90,.55); color: #ff6b6b; background: transparent; font-size: .82rem; }
     .btn-danger-tech:hover { background: rgba(255,90,90,.12); color: #ff8a8a; border-color: #ff6b6b; }
@@ -268,3 +259,45 @@
     .page-item.disabled .page-link { background: var(--bg-2); border-color: var(--line); color: #4d5964; }
     .breadcrumb-item + .breadcrumb-item::before { color: var(--muted); }
     .alert-success .btn-close, .alert-danger .btn-close { filter: invert(1) grayscale(1); }
+
+
+    /* ===== Aviso informativo e estado vazio (listas sem cadastro) ===== */
+    .alert-info {
+      background: rgba(135,147,160,.08);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--neon);
+      color: var(--text);
+    }
+    .alert-info .alert-link { color: var(--neon); }
+    .alert-warning {
+      background: rgba(255,181,71,.08);
+      border: 1px solid rgba(255,181,71,.4);
+      border-left: 3px solid var(--amber);
+      color: #ffd08a;
+    }
+
+    /* Variante maior, centralizada, para listas vazias */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: var(--panel);
+      border: 1px dashed var(--line);
+      border-radius: 3px;
+      color: var(--muted);
+    }
+    .empty-state i { font-size: 2rem; color: var(--neon); opacity: .8; margin-bottom: .8rem; display: block; }
+    .empty-state p { margin: 0; font-size: .95rem; }
+
+
+    /* ===== Foto dentro do avatar / miniatura (quando houver imagem) ===== */
+    .avatar, .thumb { overflow: hidden; }
+    .avatar img, .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+
+    /* ===== Tabelas: ajustes de responsividade (Bootstrap 5.1.3) ===== */
+    .table-tech > :not(:first-child) { border-top: 0; }          /* remove a linha branca entre cabeçalho e corpo */
+    .table-tech td.text-end { white-space: nowrap; }              /* botões de ação nunca quebram de linha */
+    @media (max-width: 767.98px) {
+      .table-tech td, .table-tech th { padding: .6rem .7rem; font-size: .88rem; }
+      .table-tech .thumb { width: 32px; height: 32px; font-size: .8rem; }
+    }
