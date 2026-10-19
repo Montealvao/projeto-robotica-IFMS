@@ -16,7 +16,6 @@ import javax.servlet.http.Part;
 import br.edu.ifms.projetoroboticaifms.dao.EstudanteDAO;
 import br.edu.ifms.projetoroboticaifms.model.Estudante;
 
-/** Servlet implementation class EstudanteController */
 @WebServlet("/estudante")
 @MultipartConfig
 public class EstudanteController extends HttpServlet {
@@ -58,13 +57,16 @@ public class EstudanteController extends HttpServlet {
     try {
       switch (acao) {
         case "estudante":
-          listaEstudantes(request, response);
+          listarEstudantes(request, response);
           break;
         case "excluir":
           apagarEstudante(request, response);
           break;
-        case "novo":
-          novoEstudante(request, response);
+        case "admin-estudante":
+        	manutencaoEstudante(request, response);
+        	break;
+        case "criar":
+          criarEstudante(request, response);
           break;
         case "inserir":
           gravarEstudante(request, response);
@@ -75,23 +77,35 @@ public class EstudanteController extends HttpServlet {
     }
   }
 
-  private void apagarEstudante(HttpServletRequest request, HttpServletResponse response)
+  private void manutencaoEstudante(HttpServletRequest request,HttpServletResponse response)throws SQLException, ServletException, IOException{
+	  List<Estudante> estudantes = estudanteDAO.listarTodosEstudantes();
+
+	    request.setAttribute("listaEstudantes", estudantes);
+
+	    String path = request.getServletPath() + "/manutencao-estudante.jsp";
+
+	    RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+
+	    dispatcher.forward(request, response);
+}
+
+private void apagarEstudante(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
 
     try {
       long id = Long.parseLong(request.getParameter("id"));
+      System.out.println("id do estudante: " + id ); 
 
       Estudante estudante = new Estudante();
       estudante.setId(id);
 
       estudanteDAO.excluir(estudante);
 
-      String mensagem = "Estudante excluido com sucesso";
-
-      String path = request.getContextPath() + request.getServletPath() + "?acao=estudante&msg=";
-
-      response.sendRedirect(path + mensagem);
-
+      request.getSession().setAttribute("mensagemSucesso", "Estudante excluído com sucesso!");
+      
+      String pathListagem = request.getContextPath() + "/estudante?acao=admin-estudante";
+      response.sendRedirect(pathListagem);
+      
     } catch (SQLException e) {
       getServletContext().log("Erro ao apagar estudante", e);
 
@@ -100,24 +114,24 @@ public class EstudanteController extends HttpServlet {
     }
   }
 
-  private void listaEstudantes(HttpServletRequest request, HttpServletResponse response)
+  private void listarEstudantes(HttpServletRequest request, HttpServletResponse response)
       throws SQLException, ServletException, IOException {
 
     List<Estudante> estudantes = estudanteDAO.listarTodosEstudantes();
 
     request.setAttribute("listaEstudantes", estudantes);
 
-    String path = request.getServletPath() + "/home-estudante.jsp";
+    String path = request.getServletPath() + "/index.jsp";
 
     RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 
     dispatcher.forward(request, response);
   }
 
-  private void novoEstudante(HttpServletRequest request, HttpServletResponse response)
+  private void criarEstudante(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/novo-estudante.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
 
     dispatcher.forward(request, response);
   }
@@ -132,7 +146,9 @@ public class EstudanteController extends HttpServlet {
     novoEstudante.setMinibio(minibio);
 
     Part filePart = request.getPart("foto");
+        
     String caminhoParaBanco = null;
+    
 
     if (filePart != null && filePart.getSize() > 0) {
       String fileName =
@@ -163,7 +179,7 @@ public class EstudanteController extends HttpServlet {
 
     request.setAttribute("mensagem", "Estudante gravado com sucesso!");
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/novo-estudante.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
     dispatcher.forward(request, response);
   }
 }
