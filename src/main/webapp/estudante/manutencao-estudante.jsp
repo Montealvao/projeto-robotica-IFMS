@@ -46,7 +46,7 @@
         </c:if>
         
         <div class="d-flex justify-content-end mb-3">
-            <a href="${pageContext.request.contextPath}/estudante?acao=novo" class="btn btn-neon btn-sm">
+            <a href="${pageContext.request.contextPath}/estudante?acao=criar" class="btn btn-neon btn-sm">
                 <i class="fa-solid fa-user-plus me-1"></i><fmt:message key="botao.novo.estudante" />
             </a>
         </div>
