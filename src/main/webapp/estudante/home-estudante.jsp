@@ -9,9 +9,6 @@
 	<jsp:include page="/WEB-INF/includes/header.jsp" />
 
 	<div class="container mt-4">
-		<h2 class="mb-3">Pagina dos estudantes</h2>
-	</div>
-	<div class="container mt-4">
 		<h2 class="mb-3">
 			<fmt:message key="estudante.titulo.listar" />
 		</h2>
@@ -32,9 +29,8 @@
 
 		</c:if>
 
-		<a class="btn btn-primary mb-3"
-			href="${pageContext.request.contextPath}/estudante?acao=novo"> <fmt:message
-				key="atividade.titulo.criar" />
+		<a class="btn btn-primary mb-3" href="${pageContext.request.contextPath}/estudante?acao=novo">
+			<fmt:message key="atividade.titulo.criar" />
 		</a>
 
 		<c:if test="${not empty listaEstudantes}">
@@ -76,14 +72,15 @@
 
 									</c:choose></td>
 								<td>
-									<!-- 								<a class="btn btn-dark" --> <%-- 									href="${pageContext.request.contextPath}/estudante?acao=editar">Editar</a> --%>
+<!-- 								<a class="btn btn-dark" -->
+<%-- 									href="${pageContext.request.contextPath}/estudante?acao=editar">Editar
+									</a> --%>
 
-									<a
-									href="${pageContext.request.contextPath}/estudante?acao=excluir&id=${estudante.id}"
+									<a href="${pageContext.request.contextPath}/estudante?acao=excluir&id=${estudante.id}"
 									class="btn btn-danger btn-sm"
 									onclick="return confirm('O estudante ${estudante.nome} será excluido permanetemente.');">
-										<fmt:message key="estudante.botao.apagar" />
-								</a>
+										<fmt:message key="estudante.botao.apagar" /> 
+									</a>
 								</td>
 							</tr>
 						</c:forEach>
