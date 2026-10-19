@@ -12,8 +12,8 @@
 		<div class="container">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#"><fmt:message key="estudante.breadcrumb.inicio" /></a></li>
-					<li class="breadcrumb-item"><a href="#"><fmt:message key="estudante.breadcrumb.gerenciar" /></a></li>
+					<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/"><fmt:message key="estudante.breadcrumb.inicio" /></a></li>
+					<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/estudante?acao=admin-estudante"><fmt:message key="estudante.breadcrumb.gerenciar" /></a></li>
 					<li class="breadcrumb-item active" aria-current="page"><fmt:message key="estudante.breadcrumb.novo" /></li>
 				</ol>
 			</nav>
@@ -64,7 +64,7 @@
 								<button type="submit" class="btn btn-neon px-4">
 									<i class="fa-solid fa-floppy-disk me-2"></i><fmt:message key="estudante.botao.salvar" />
 								</button>
-								<button type="button" class="btn btn-ghost px-4"><fmt:message key="estudante.botao.cancelar" /></button>
+								<a class="btn btn-ghost px-4" href="${pageContext.request.contextPath}/estudante?acao=admin-estudante"><fmt:message key="estudante.botao.cancelar" /></a>
 							</div>
 						</form>
 
