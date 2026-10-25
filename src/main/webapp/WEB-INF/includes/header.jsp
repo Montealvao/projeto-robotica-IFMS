@@ -16,12 +16,12 @@
         
         <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-                <li class="nav-item"><a class="nav-link active" href="#"><fmt:message key="navbar.inicio" /></a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><fmt:message key="navbar.sobre" /></a></li>
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/estudante?acao=home"><fmt:message key="navbar.estudantes" /></a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><fmt:message key="navbar.atividades" /></a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><fmt:message key="navbar.participacoes" /></a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><fmt:message key="navbar.contato" /></a></li>
+                <li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/"><fmt:message key="navbar.inicio" /></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/publico/sobre.jsp"><fmt:message key="navbar.sobre" /></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/estudante/index.jsp"><fmt:message key="navbar.estudantes" /></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/atividade/index.example.jsp"><fmt:message key="navbar.atividades" /></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/participacao/index.jsp"><fmt:message key="navbar.participacoes" /></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/publico/contato.jsp"><fmt:message key="navbar.contato" /></a></li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
