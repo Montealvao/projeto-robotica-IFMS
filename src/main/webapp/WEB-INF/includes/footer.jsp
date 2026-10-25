@@ -8,7 +8,7 @@
 
 			<div class="col-lg-5">
 				<h5>
-					<i class="fa-solid fa-microchip me-2" style="color: var(- -neon)"></i>
+					<i class="fa-solid fa-microchip me-2" style="color: var(--neon)"></i>
 					<fmt:message key="footer.lab.nome" />
 				</h5>
 				<p class="mt-3 mb-2">
@@ -25,15 +25,15 @@
 					<fmt:message key="footer.nav.titulo" />
 				</h5>
 				<ul class="list-unstyled mt-3 mb-0">
-					<li class="mb-1"><a href="#"><fmt:message
+					<li class="mb-1"><a href="${pageContext.request.contextPath}/"><fmt:message
 								key="footer.nav.inicio" /></a></li>
-					<li class="mb-1"><a href="#"><fmt:message
+					<li class="mb-1"><a href="${pageContext.request.contextPath}/publico/sobre.jsp"><fmt:message
 								key="footer.nav.sobre" /></a></li>
-					<li class="mb-1"><a href="#"><fmt:message
+					<li class="mb-1"><a href="${pageContext.request.contextPath}/estudante/index.jsp"><fmt:message
 								key="footer.nav.estudantes" /></a></li>
-					<li class="mb-1"><a href="#"><fmt:message
+					<li class="mb-1"><a href="${pageContext.request.contextPath}/atividade/index.example.jsp"><fmt:message
 								key="footer.nav.atividades" /></a></li>
-					<li class="mb-1"><a href="#"><fmt:message
+					<li class="mb-1"><a href="${pageContext.request.contextPath}/publico/contato.jsp"><fmt:message
 								key="footer.nav.contato" /></a></li>
 				</ul>
 			</div>
@@ -67,9 +67,7 @@
 
 		<div class="d-flex flex-wrap justify-content-between gap-2 small">
 			<span><fmt:message key="footer.copyright" /></span> <span> <fmt:message
-					key="footer.desenvolvido" /> <strong class="text-white">Integrante
-					1</strong> <fmt:message key="footer.e" /> <strong class="text-white">Integrante
-					2</strong> · <fmt:message key="footer.curso" />
+					key="footer.desenvolvido" /> <strong class="text-white">Guilherme Montealvão</strong> <fmt:message key="footer.e" /> <strong class="text-white">Wellington Brangança</strong> · <fmt:message key="footer.curso" />
 			</span>
 		</div>
 	</div>
