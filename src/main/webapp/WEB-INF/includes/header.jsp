@@ -18,7 +18,7 @@
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
                 <li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/"><fmt:message key="navbar.inicio" /></a></li>
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/publico/sobre.jsp"><fmt:message key="navbar.sobre" /></a></li>
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/estudante/index.jsp"><fmt:message key="navbar.estudantes" /></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/estudante?acao=estudante"><fmt:message key="navbar.estudantes" /></a></li>
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/atividade/index.example.jsp"><fmt:message key="navbar.atividades" /></a></li>
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/participacao/index.jsp"><fmt:message key="navbar.participacoes" /></a></li>
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/publico/contato.jsp"><fmt:message key="navbar.contato" /></a></li>
@@ -29,7 +29,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/estudante?acao=novo">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/estudante?acao=criar">
                                 <i class="fa-solid fa-user-plus me-2"></i><fmt:message key="navbar.novo.estudante" />
                             </a>
                         </li>

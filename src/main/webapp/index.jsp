@@ -163,7 +163,7 @@
 						<p>
 							<fmt:message key="ativ.negrotica26.desc" />
 						</p>
-						<hr style="border-color: var(- -line); opacity: 1">
+						<hr style="border-color: var(--line); opacity: 1">
 						<div class="d-flex justify-content-between small text-muted-2">
 							<span><i class="fa-regular fa-calendar me-1"></i>2026/1 ·
 								2026/2</span> <a
@@ -187,7 +187,7 @@
 						<p>
 							<fmt:message key="ativ.estagio262.desc" />
 						</p>
-						<hr style="border-color: var(- -line); opacity: 1">
+						<hr style="border-color: var(--line); opacity: 1">
 						<div class="d-flex justify-content-between small text-muted-2">
 							<span><i class="fa-regular fa-calendar me-1"></i>2026/2</span> <a
 								href="${pageContext.request.contextPath}/atividade/atividade-detalhe.jsp"><fmt:message
@@ -202,7 +202,7 @@
 							<span class="badge badge-type px-2 py-1"><fmt:message
 									key="badge.estagio" /></span> <span
 								class="badge badge-status px-2 py-1"
-								style="color: var(- -neon); background: var(- -neon-dim); border-color: rgba(25, 230, 180, .35)"><fmt:message
+								style="color: var(--neon); background: var(--neon-dim); border-color: rgba(25, 230, 180, .35)"><fmt:message
 									key="badge.concluida" /></span>
 						</div>
 						<h3>
@@ -211,7 +211,7 @@
 						<p>
 							<fmt:message key="ativ.estagio261.desc" />
 						</p>
-						<hr style="border-color: var(- -line); opacity: 1">
+						<hr style="border-color: var(--line); opacity: 1">
 						<div class="d-flex justify-content-between small text-muted-2">
 							<span><i class="fa-regular fa-calendar me-1"></i>2026/1</span> <a
 								href="${pageContext.request.contextPath}/atividade/atividade-detalhe.jsp"><fmt:message
@@ -226,7 +226,7 @@
 							<span class="badge badge-type px-2 py-1"><fmt:message
 									key="badge.projeto" /></span> <span
 								class="badge badge-status px-2 py-1"
-								style="color: var(- -neon); background: var(- -neon-dim); border-color: rgba(25, 230, 180, .35)"><fmt:message
+								style="color: var(--neon); background: var(--neon-dim); border-color: rgba(25, 230, 180, .35)"><fmt:message
 									key="badge.concluida" /></span>
 						</div>
 						<h3>
@@ -235,7 +235,7 @@
 						<p>
 							<fmt:message key="ativ.negrotica25.desc" />
 						</p>
-						<hr style="border-color: var(- -line); opacity: 1">
+						<hr style="border-color: var(--line); opacity: 1">
 						<div class="d-flex justify-content-between small text-muted-2">
 							<span><i class="fa-regular fa-calendar me-1"></i>2025</span> <a
 								href="${pageContext.request.contextPath}/atividade/atividade-detalhe.jsp"><fmt:message
