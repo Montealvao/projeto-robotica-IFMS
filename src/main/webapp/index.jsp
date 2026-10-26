@@ -15,7 +15,7 @@
 					<span class="tag mb-3"><i
 						class="fa-solid fa-circle-nodes me-1"></i> <fmt:message
 							key="hero.campus" /></span>
-
+  
 					<h1 class="mt-3">
 						<fmt:message key="hero.titulo.part1" />
 						<span><fmt:message key="hero.titulo.destaque" /></span>
