@@ -1,42 +1,39 @@
-	@font-face {
-	  font-family: 'Chakra Petch';
-	  font-weight: 500;
-	  font-style: normal;
-	  font-display: swap;
-	  src: url("../fonts/chakra-petch-v13-latin-500.woff2") format("woff2");
-	}
-	
-		@font-face {
-	  font-family: 'Chakra Petch';
-	  font-weight: 600;
-	  font-style: normal;
-	  font-display: swap;
-	  src: url("../fonts/chakra-petch-v13-latin-600.woff2") format("woff2");
-	}
-	
-		@font-face {
-	  font-family: 'Chakra Petch';
-	  font-weight: 700;
-	  font-style: normal;
-	  font-display: swap;
-	  src: url("../fonts/chakra-petch-v13-latin-700.woff2") format("woff2");
-	}
-	
-	@font-face {
-	  font-family: 'IBM Plex Sans';
-	  font-weight: 500;
-	  font-style: normal;
-	  font-display: swap;
-	  src: url("../fonts/ibm-plex-sans-v23-latin-500.woff2") format("woff2");
-	}
-	
-		@font-face {
-	  font-family: 'IBM Plex Sans';
-	  font-weight: 400;
-	  font-style: normal;
-	  font-display: swap;
-	  src: url("../fonts/ibm-plex-sans-v23-latin-regular.woff2") format("woff2");
-	}
+/* ===== Fontes locais ===== */
+@font-face {
+  font-family: 'Chakra Petch';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/chakra-petch-v13-latin-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: 'Chakra Petch';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/chakra-petch-v13-latin-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: 'Chakra Petch';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/chakra-petch-v13-latin-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-v23-latin-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-v23-latin-500.woff2") format("woff2");
+}
 
     :root {
       --bg: #0b0d10;
@@ -45,16 +42,20 @@
       --line: #28313a;
       --text: #d7dde3;
       --muted: #8793a0;
-      --neon: #19e6b4;          
+      --neon: #19e6b4;          /* acento principal (ciano-esverdeado) */
       --neon-dim: rgba(25, 230, 180, .14);
-      --amber: #ffb547;         
+      --amber: #ffb547;         /* acento secundário, usado com parcimônia */
     }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+    strong, b { font-weight: 500; }   /* usa o peso 500 real (não há 600/700 do IBM Plex declarados) */
     h1, h2, h3, h4, h5, .navbar-brand, .btn, .tag {
       font-family: 'Chakra Petch', 'IBM Plex Sans', sans-serif;
       letter-spacing: .02em;
@@ -63,21 +64,12 @@
     a:hover { color: #6dffd9; }
     .text-muted-2 { color: var(--muted); }
 
+    /* ===== Fundo de circuitos (SVG inline, sem imagem externa) ===== */
     .circuit-bg {
       position: relative;
       isolation: isolate;
       background-color: var(--bg);
     }
-    
-	body {
-	  min-height: 100vh;
-	  display: flex;
-	  flex-direction: column;
-	}
-	
-	footer {
-	  margin-top: auto;
-	}
     .circuit-bg::before {
       content: "";
       position: absolute; inset: 0; z-index: -1;
@@ -85,13 +77,14 @@
       -webkit-mask-image: radial-gradient(ellipse at 75% 30%, #000 0%, transparent 75%);
               mask-image: radial-gradient(ellipse at 75% 30%, #000 0%, transparent 75%);
     }
-    .circuit-bg::after {
+    footer.circuit-bg { background-color: #080a0c; }   /* .circuit-bg sobrescreveria o fundo do rodapé */
+    .circuit-bg::after { /* brilho discreto */
       content: "";
       position: absolute; inset: 0; z-index: -1;
       background: radial-gradient(ellipse at 80% 20%, rgba(25,230,180,.10), transparent 55%);
     }
 
-    /*Navbar*/
+    /* ===== Navbar ===== */
     .navbar {
       background: rgba(11, 13, 16, .92);
       backdrop-filter: blur(6px);
@@ -130,19 +123,20 @@
     }
     .chip i { color: var(--neon); margin-right: .35rem; }
 
-    /*Seções*/
+    /* ===== Seções ===== */
     section.block { padding: 4.5rem 0; border-bottom: 1px solid var(--line); }
     section.alt { background: var(--bg-2); }
     .sec-label { font-family: 'Chakra Petch', sans-serif; font-size: .8rem; color: var(--neon); text-transform: uppercase; letter-spacing: .15em; }
     .sec-title { color: #fff; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.1rem); margin: .25rem 0 .5rem; }
     .sec-title::after { content: ""; display: block; width: 48px; height: 2px; background: var(--neon); margin-top: .7rem; }
 
-    /*Cards*/
+    /* ===== Cards ===== */
     .tcard {
       background: var(--panel); border: 1px solid var(--line); border-radius: 3px;
       padding: 1.4rem; height: 100%; transition: border-color .2s, transform .2s;
     }
     .tcard:hover { border-color: rgba(25,230,180,.55); transform: translateY(-2px); }
+    .tcard-static:hover { border-color: var(--line); transform: none; }   /* card só informativo */
     .tcard .ico { color: var(--neon); font-size: 1.3rem; margin-bottom: .8rem; }
     .tcard h3, .tcard h4 { color: #fff; font-size: 1.1rem; font-weight: 600; }
     .tcard p { color: var(--muted); font-size: .93rem; margin-bottom: 0; }
@@ -154,7 +148,7 @@
       display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
     }
 
-    /*Linha do tempo*/
+    /* ===== Linha do tempo ===== */
     .timeline { border-left: 1px solid var(--line); margin-left: .5rem; padding-left: 1.6rem; }
     .t-item { position: relative; padding-bottom: 1.6rem; }
     .t-item::before {
@@ -174,12 +168,9 @@
     }
     .achievement .trophy { font-size: 2.2rem; color: var(--amber); }
 
-    /* ===== Aviso de protótipo ===== */
-    .proto-bar { background: #0f1317; border-bottom: 1px dashed var(--line); font-size: .78rem; color: var(--muted); text-align: center; padding: .35rem; }
-    .proto-bar b { color: var(--amber); font-weight: 500; }
 
     /* ===== Rodapé ===== */
-    footer { background: #080a0c; padding: 3rem 0 1.5rem; color: var(--muted); font-size: .9rem; }
+    footer { margin-top: auto; background: #080a0c; padding: 3rem 0 1.5rem; color: var(--muted); font-size: .9rem; }
     footer h5 { color: #fff; font-size: .95rem; text-transform: uppercase; letter-spacing: .1em; }
     footer a { color: var(--muted); }
     footer a:hover { color: var(--neon); }
@@ -190,7 +181,7 @@
     .page-head { padding: 3.2rem 0 2.4rem; border-bottom: 1px solid var(--line); }
     .page-head h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; color: #fff; margin: .4rem 0 .4rem; }
     .page-head p { color: var(--muted); max-width: 40rem; margin-bottom: 0; }
-    .breadcrumb { --bs-breadcrumb-divider-color: var(--muted); font-size: .85rem; margin-bottom: .6rem; }
+    .breadcrumb { font-size: .85rem; margin-bottom: .6rem; }
     .breadcrumb-item, .breadcrumb-item.active { color: var(--muted); }
 
     /* ===== Formulários ===== */
@@ -217,15 +208,14 @@
     /* ===== Tabelas ===== */
     .table-tech { color: var(--text); border-color: var(--line); --bs-table-bg: transparent; --bs-table-hover-bg: var(--neon-dim); --bs-table-hover-color: #fff; margin-bottom: 0; }
     .table-tech thead th { font-family: 'Chakra Petch', sans-serif; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--neon); background: #0f1317; border-bottom: 1px solid rgba(25,230,180,.35); font-weight: 600; }
-    .table-tech td, .table-tech th { padding: .85rem 1rem; vertical-align: middle; }
-    .table-wrap { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+    .table-tech td, .table-tech th { padding: .85rem .75rem; vertical-align: middle; }
+    .table-wrap { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; overflow-x: auto; }
     .thumb { width: 38px; height: 38px; border-radius: 50%; background: var(--bg); border: 1px solid var(--neon); color: var(--neon); display: inline-flex; align-items: center; justify-content: center; font-size: .9rem; }
     .btn-danger-tech { border: 1px solid rgba(255,90,90,.55); color: #ff6b6b; background: transparent; font-size: .82rem; }
     .btn-danger-tech:hover { background: rgba(255,90,90,.12); color: #ff8a8a; border-color: #ff6b6b; }
     .btn-ghost { border: 1px solid var(--line); color: var(--text); background: transparent; }
     .btn-ghost:hover { border-color: var(--neon); color: var(--neon); }
 
-    /* ===== Paginação ===== */
 
     /* ===== Mensagens (alerts) ===== */
     .alert { border-radius: 3px; font-size: .92rem; }
@@ -267,4 +257,95 @@
     .page-item.active .page-link { background: var(--neon); border-color: var(--neon); color: #05241c; }
     .page-item.disabled .page-link { background: var(--bg-2); border-color: var(--line); color: #4d5964; }
     .breadcrumb-item + .breadcrumb-item::before { color: var(--muted); }
-    .alert-success .btn-close, .alert-danger .btn-close { filter: invert(1) grayscale(1); }
+
+
+    /* ===== Aviso informativo e estado vazio (listas sem cadastro) ===== */
+    .alert-info {
+      background: rgba(135,147,160,.08);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--neon);
+      color: var(--text);
+    }
+    .alert-info .alert-link { color: var(--neon); }
+    .alert-warning {
+      background: rgba(255,181,71,.08);
+      border: 1px solid rgba(255,181,71,.4);
+      border-left: 3px solid var(--amber);
+      color: #ffd08a;
+    }
+
+    /* Variante maior, centralizada, para listas vazias */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: var(--panel);
+      border: 1px dashed var(--line);
+      border-radius: 3px;
+      color: var(--muted);
+    }
+    .empty-state i { font-size: 2rem; color: var(--neon); opacity: .8; margin-bottom: .8rem; display: block; }
+    .empty-state p { margin: 0; font-size: .95rem; }
+
+
+    /* ===== Foto dentro do avatar / miniatura (quando houver imagem) ===== */
+    .avatar, .thumb { overflow: hidden; }
+    .avatar img, .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+
+    /* ===== Tabelas: ajustes de responsividade (Bootstrap 5.1.3) ===== */
+    .table-tech > :not(:first-child) { border-top: 0; }          /* remove a linha branca entre cabeçalho e corpo */
+    .table-tech td.text-end { white-space: nowrap; }              /* botões de ação nunca quebram de linha */
+    @media (max-width: 767.98px) {
+      .table-tech td, .table-tech th { padding: .6rem .7rem; font-size: .88rem; }
+    }
+
+
+    /* ===== Tabelas sem rolagem: colunas justas + empilhamento em telas pequenas ===== */
+    /* Colunas "justas": ocupam só o necessário; o espaço que sobra vai para a coluna principal (sem classe) */
+    .table-tech .col-fit { width: 1%; white-space: nowrap; }
+
+    /* Entre 576px e 991px os botões de ação ficam só com ícone */
+    @media (min-width: 576px) and (max-width: 991.98px) {
+      .btn-label { display: none; }
+    }
+
+    /* Abaixo de 576px cada linha vira um "cartão" (exige data-label em cada <td>) */
+    @media (max-width: 575.98px) {
+      .table-stack thead { display: none; }
+      .table-stack, .table-stack tbody, .table-stack tr, .table-stack td { display: block; width: 100%; }
+      .table-stack tr { padding: .5rem 0; border-bottom: 1px solid var(--line); }
+      .table-stack tr:last-child { border-bottom: 0; }
+      .table-stack td {
+        display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+        padding: .4rem 1rem; border: 0; text-align: right; white-space: normal;
+      }
+      .table-stack td::before {
+        content: attr(data-label); text-align: left; flex-shrink: 0;
+        font-family: 'Chakra Petch', sans-serif; font-size: .72rem; text-transform: uppercase;
+        letter-spacing: .08em; color: var(--neon);
+      }
+      .table-stack td[data-label=""]::before { display: none; }
+      .table-stack td.text-end { justify-content: flex-end; padding-top: .7rem; }
+      .table-stack .col-fit { width: 100%; }
+    }
+
+
+    /* ===== Ajustes finais: sobrescrevem estilos do Bootstrap 5.1.3 ===== */
+    /* Links do menu: o Bootstrap usa .navbar-dark .navbar-nav .nav-link (mais específico) */
+    .navbar .navbar-nav .nav-link { color: var(--text); }
+    .navbar .navbar-nav .nav-link:hover,
+    .navbar .navbar-nav .nav-link:focus,
+    .navbar .navbar-nav .nav-link.active,
+    .navbar .navbar-nav .show > .nav-link { color: var(--neon); }
+
+    /* Itens do dropdown: foco por teclado e clique não podem voltar ao cinza/azul padrão */
+    .dropdown-item:focus,
+    .dropdown-item:active,
+    .dropdown-item.active { background: var(--neon-dim); color: var(--neon); }
+
+    /* Botão "Escolher arquivo": no hover o Bootstrap clareava o fundo e o texto sumia */
+    .form-control[type="file"]:hover:not(:disabled):not([readonly])::file-selector-button { background: var(--neon-dim); color: var(--neon); }
+
+    /* Anel de foco azul padrão -> neon */
+    .btn:focus, .btn-close:focus, .form-check-input:focus { box-shadow: 0 0 0 .2rem var(--neon-dim); }
+    .form-check-input:focus { border-color: var(--neon); }
