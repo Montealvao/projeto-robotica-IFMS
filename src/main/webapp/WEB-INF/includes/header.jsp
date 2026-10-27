@@ -34,7 +34,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/atividade/formulario-atividade.jsp">
                                 <i class="fa-solid fa-diagram-project me-2"></i><fmt:message key="navbar.nova.atividade" />
                             </a>
                         </li>
@@ -50,7 +50,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/atividade/manutencao-atividade.jsp">
                                 <i class="fa-solid fa-table-list me-2"></i><fmt:message key="navbar.manutencao.atividades" />
                             </a>
                         </li>
