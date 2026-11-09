@@ -69,7 +69,7 @@ public class EstudanteController extends HttpServlet {
           criarEstudante(request, response);
           break;
         case "inserir":
-          salvarEstudante(request, response);
+          gravarEstudante(request, response);
           break;
       }
     } catch (Exception ex) {
@@ -136,7 +136,7 @@ private void apagarEstudante(HttpServletRequest request, HttpServletResponse res
     dispatcher.forward(request, response);
   }
 
-  private void salvarEstudante(HttpServletRequest request, HttpServletResponse response)
+  private void gravarEstudante(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     String nome = request.getParameter("nome");
     String minibio = request.getParameter("minibio");

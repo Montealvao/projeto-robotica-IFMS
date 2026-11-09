@@ -26,16 +26,7 @@
 <section class="block">
     <div class="container">
     
-    
-			<!-- <div class="alert alert-danger alert-dismissible fade show"
-				role="alert">
-				<i class="fa-solid fa-triangle-exclamation me-2"></i>Mensagem de
-				erro de exemplo.
-				<button type="button" class="btn-close" data-bs-dismiss="alert"
-					aria-label="Fechar"></button>
-			</div> -->
 
-    
         <c:if test="${not empty sessionScope.mensagemSucesso}">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="fa-solid fa-circle-check me-2"></i>
