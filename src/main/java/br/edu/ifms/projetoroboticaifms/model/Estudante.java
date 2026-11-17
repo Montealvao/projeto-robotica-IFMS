@@ -1,7 +1,20 @@
 package br.edu.ifms.projetoroboticaifms.model;
 
 public class Estudante {
-  private Long id;
+  @Override
+  public String toString() {
+    return "Estudante [id="
+        + id
+        + ", nome="
+        + nome
+        + ", minibio="
+        + minibio
+        + ", foto="
+        + foto
+        + "]";
+  }
+
+private Long id;
   private String nome;
   private String minibio;
   private String foto;

@@ -1,5 +1,6 @@
 package br.edu.ifms.projetoroboticaifms.dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import br.edu.ifms.projetoroboticaifms.dao.util.Conexao;
 import br.edu.ifms.projetoroboticaifms.model.Estudante;
@@ -31,10 +36,7 @@ public class EstudanteDAO {
   }
 
   public Estudante inserirEstudante(Estudante estudante) throws SQLException {
-    String sql =
-        "INSERT INTO estudante "
-            + "(nome, minibio, foto) "
-            + "VALUES (?, ?, ?)";
+    String sql = "INSERT INTO estudante " + "(nome, minibio, foto) " + "VALUES (?, ?, ?)";
 
     PreparedStatement statement = null;
 
@@ -97,8 +99,8 @@ public class EstudanteDAO {
   }
 
   public boolean excluir(Estudante estudante) throws SQLException {
-   
-	  String sql = "DELETE FROM estudante WHERE id = ?";
+
+    String sql = "DELETE FROM estudante WHERE id = ?";
 
     conectar();
 
@@ -113,5 +115,47 @@ public class EstudanteDAO {
     } finally {
       desconectar();
     }
+  }
+
+  public Estudante buscarEstudantePorId(Long id) throws SQLException {
+    Estudante estudante = null;
+    String sql = "SELECT id, nome, minibio, foto FROM estudante WHERE id = ?";
+
+    conectar();
+
+    try (PreparedStatement statement = connection.prepareStatement(sql)) {
+      statement.setLong(1, id);
+
+      try (ResultSet resultSet = statement.executeQuery()) {
+        if (resultSet.next()) {
+          estudante = new Estudante();
+          estudante.setId(resultSet.getLong("id"));
+          estudante.setNome(resultSet.getString("nome"));
+          estudante.setMinibio(resultSet.getString("minibio"));
+          estudante.setFoto(resultSet.getString("foto"));
+        }
+      }
+    }
+    return estudante;
+  }
+
+  public Estudante atualizarEstudante(Estudante estudante) throws SQLException {
+    String sql = "UPDATE estudante SET nome = ?, minibio = ? , foto = ? WHERE id = ?";
+
+    conectar();
+    try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+      statement.setString(1, estudante.getNome());
+      statement.setString(2, estudante.getMinibio());
+      statement.setString(3, estudante.getFoto());
+      statement.setLong(4, estudante.getId());
+      
+      statement.executeUpdate();
+
+    } catch (SQLException e) {
+      throw new SQLException("Erro ao atualizar o estudante de ID " + estudante.getId(), e);
+    }
+
+    return estudante;
   }
 }

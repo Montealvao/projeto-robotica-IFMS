@@ -77,7 +77,7 @@
                                     <td><c:out value="${estudante.nome}"></c:out></td>
                                     <td>3</td>
                                     <td class="text-end">
-                                        <a href="#" class="btn btn-ghost btn-sm me-1">
+                                        <a href="${pageContext.request.contextPath}/estudante?acao=editar&id=${estudante.id}" class="btn btn-ghost btn-sm me-1">
                                             <i class="fa-solid fa-pen me-1"></i><fmt:message key="botao.editar" />
                                         </a> 
                                         <a href="${pageContext.request.contextPath}/estudante?acao=excluir&id=${estudante.id}"
