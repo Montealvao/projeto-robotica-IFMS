@@ -12,14 +12,24 @@
 		<div class="container">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#"><fmt:message key="estudante.breadcrumb.inicio" /></a></li>
-					<li class="breadcrumb-item"><a href="#"><fmt:message key="estudante.breadcrumb.gerenciar" /></a></li>
-					<li class="breadcrumb-item active" aria-current="page"><fmt:message key="estudante.breadcrumb.novo" /></li>
+					<li class="breadcrumb-item"><a
+						href="${pageContext.request.contextPath}/"><fmt:message
+								key="estudante.breadcrumb.inicio" /></a></li>
+					<li class="breadcrumb-item"><a
+						href="${pageContext.request.contextPath}/estudante?acao=admin-estudante"><fmt:message
+								key="estudante.breadcrumb.gerenciar" /></a></li>
+					<li class="breadcrumb-item active" aria-current="page"><fmt:message
+							key="estudante.breadcrumb.novo" /></li>
 				</ol>
 			</nav>
-			<span class="sec-label"><fmt:message key="estudante.label.gerenciar" /></span>
-			<h1><fmt:message key="estudante.titulo.novo" /></h1>
-			<p><fmt:message key="estudante.descricao.novo" /></p>
+			<span class="sec-label"><fmt:message
+					key="estudante.label.gerenciar" /></span>
+			<h1>
+				<fmt:message key="estudante.titulo.novo" />
+			</h1>
+			<p>
+				<fmt:message key="estudante.descricao.novo" />
+			</p>
 		</div>
 	</header>
 
@@ -35,36 +45,69 @@
 					<button type="button" class="btn-close" data-bs-dismiss="alert"
 						aria-label="<fmt:message key='estudante.botao.fechar' />"></button>
 				</div>
+				<c:remove var="mensagem" scope="session" />
 			</c:if>
 
 			<div class="row g-4">
 				<div class="col-lg-8">
 					<div class="form-panel">
 						<form method="post"
-							action="${pageContext.request.contextPath}/estudante?acao=inserir"
+							action="${pageContext.request.contextPath}/estudante?acao=salvar"
 							enctype="multipart/form-data">
-							<input type="hidden" id="id-estudante">
+							<input type="hidden" id="id-estudante" name="id" value="${estudante.id }">
 
 							<div class="mb-3">
-								<label for="nome" class="form-label"><fmt:message key="estudante.label.nome" /></label> 
-								<input type="text" class="form-control" id="nome"
-									placeholder="<fmt:message key='estudante.placeholder.nome' />" name="nome">
+								<label for="nome" class="form-label"><fmt:message
+										key="estudante.label.nome" /></label> <input type="text"
+									class="form-control" id="nome"
+									placeholder="<fmt:message key='estudante.placeholder.nome' />"
+									name="nome" value="<c:out value='${estudante.nome}' />">
 							</div>
+
 							<div class="mb-3">
-								<label for="minibio" class="form-label"><fmt:message key="estudante.label.minibio" /></label>
+								<label for="minibio" class="form-label"><fmt:message
+										key="estudante.label.minibio" /></label>
 								<textarea class="form-control" id="minibio" rows="4"
-									placeholder="<fmt:message key='estudante.placeholder.minibio' />" name="minibio"></textarea>
+									placeholder="<fmt:message key='estudante.placeholder.minibio' />"
+									name="minibio"><c:out value="${estudante.minibio}" /></textarea>
 							</div>
+
 							<div class="mb-4">
-								<label for="foto" class="form-label"><fmt:message key="estudante.label.foto" /></label> 
-								<input type="file" class="form-control" id="foto" name="foto">
-								<div class="form-text"><fmt:message key="estudante.help.foto" /></div>
+								<label for="foto" class="form-label"><fmt:message
+										key="estudante.label.foto" /></label>
+								<div class="d-flex flex-wrap align-items-center gap-3">
+
+									<div class="avatar avatar-lg flex-shrink-0">
+										<c:choose>
+											<c:when test="${not empty estudante.foto}">
+												<img
+													src="${pageContext.request.contextPath}/${estudante.foto}"
+													alt="<c:out value='${estudante.nome}'/>" />
+											</c:when>
+											<c:otherwise>
+												<i class="fa-solid fa-user"></i>
+											</c:otherwise>
+										</c:choose>
+									</div>
+
+									<div class="flex-grow-1" style="min-width: 14rem;">
+										<input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+										<div class="form-text">
+											<fmt:message key="estudante.help.foto" />
+										</div>
+									</div>
+
+								</div>
 							</div>
+
 							<div class="d-flex gap-2">
 								<button type="submit" class="btn btn-neon px-4">
-									<i class="fa-solid fa-floppy-disk me-2"></i><fmt:message key="estudante.botao.salvar" />
+									<i class="fa-solid fa-floppy-disk me-2"></i>
+									<fmt:message key="estudante.botao.salvar" />
 								</button>
-								<button type="button" class="btn btn-ghost px-4"><fmt:message key="estudante.botao.cancelar" /></button>
+								<a class="btn btn-ghost px-4"
+									href="${pageContext.request.contextPath}/estudante?acao=admin-estudante"><fmt:message
+										key="estudante.botao.cancelar" /></a>
 							</div>
 						</form>
 
