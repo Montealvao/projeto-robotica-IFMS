@@ -297,10 +297,7 @@
     .table-tech td.text-end { white-space: nowrap; }              /* botões de ação nunca quebram de linha */
     @media (max-width: 767.98px) {
       .table-tech td, .table-tech th { padding: .6rem .7rem; font-size: .88rem; }
-<<<<<<< HEAD
       .table-tech .thumb { width: 32px; height: 32px; font-size: .8rem; }
-    }
-=======
     }
 
 
@@ -353,4 +350,3 @@
     /* Anel de foco azul padrão -> neon */
     .btn:focus, .btn-close:focus, .form-check-input:focus { box-shadow: 0 0 0 .2rem var(--neon-dim); }
     .form-check-input:focus { border-color: var(--neon); }
->>>>>>> b845a29797b50a26c27e619126d0eeac420e4a2b
