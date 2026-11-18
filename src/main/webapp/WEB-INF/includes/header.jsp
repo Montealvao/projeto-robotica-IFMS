@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+
     <div class="container">
         <a class="navbar-brand" href="#"> 
             <i class="fa-solid fa-microchip dot me-1"></i> <fmt:message key="navbar.brand.robotica" /><span class="dot">.</span>IFMS

@@ -57,19 +57,22 @@ public class EstudanteController extends HttpServlet {
     try {
       switch (acao) {
         case "estudante":
-          listaEstudantes(request, response);
+          listarEstudantes(request, response);
           break;
         case "excluir":
           apagarEstudante(request, response);
           break;
         case "admin-estudante":
-        	manutencaoEstudante(request, response);
-        	break;
+          manutencaoEstudante(request, response);
+          break;
         case "criar":
           criarEstudante(request, response);
           break;
-        case "inserir":
+        case "salvar":
           gravarEstudante(request, response);
+          break;
+        case "editar":
+          editarEstudante(request, response);
           break;
       }
     } catch (Exception ex) {
@@ -77,24 +80,25 @@ public class EstudanteController extends HttpServlet {
     }
   }
 
-  private void manutencaoEstudante(HttpServletRequest request,HttpServletResponse response)throws SQLException, ServletException, IOException{
-	  List<Estudante> estudantes = estudanteDAO.listarTodosEstudantes();
+  private void manutencaoEstudante(HttpServletRequest request, HttpServletResponse response)
+      throws SQLException, ServletException, IOException {
+    List<Estudante> estudantes = estudanteDAO.listarTodosEstudantes();
 
-	    request.setAttribute("listaEstudantes", estudantes);
+    request.setAttribute("listaEstudantes", estudantes);
 
-	    String path = request.getServletPath() + "/manutencao-estudante.jsp";
+    String path = request.getServletPath() + "/manutencao-estudante.jsp";
 
-	    RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+    RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 
-	    dispatcher.forward(request, response);
-}
+    dispatcher.forward(request, response);
+  }
 
-private void apagarEstudante(HttpServletRequest request, HttpServletResponse response)
+  private void apagarEstudante(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
 
     try {
       long id = Long.parseLong(request.getParameter("id"));
-      System.out.println("id do estudante: " + id ); 
+      System.out.println("id do estudante: " + id);
 
       Estudante estudante = new Estudante();
       estudante.setId(id);
@@ -102,10 +106,10 @@ private void apagarEstudante(HttpServletRequest request, HttpServletResponse res
       estudanteDAO.excluir(estudante);
 
       request.getSession().setAttribute("mensagemSucesso", "Estudante excluído com sucesso!");
-      
+
       String pathListagem = request.getContextPath() + "/estudante?acao=admin-estudante";
       response.sendRedirect(pathListagem);
-      
+
     } catch (SQLException e) {
       getServletContext().log("Erro ao apagar estudante", e);
 
@@ -114,7 +118,7 @@ private void apagarEstudante(HttpServletRequest request, HttpServletResponse res
     }
   }
 
-  private void listaEstudantes(HttpServletRequest request, HttpServletResponse response)
+  private void listarEstudantes(HttpServletRequest request, HttpServletResponse response)
       throws SQLException, ServletException, IOException {
 
     List<Estudante> estudantes = estudanteDAO.listarTodosEstudantes();
@@ -131,55 +135,75 @@ private void apagarEstudante(HttpServletRequest request, HttpServletResponse res
   private void criarEstudante(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
+    RequestDispatcher dispatcher =
+        request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
 
     dispatcher.forward(request, response);
   }
 
   private void gravarEstudante(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    String nome = request.getParameter("nome");
-    String minibio = request.getParameter("minibio");
+	      throws ServletException, IOException {
+	    String idStr = request.getParameter("id");
+	    String nome = request.getParameter("nome");
+	    String minibio = request.getParameter("minibio");
 
-    Estudante novoEstudante = new Estudante();
-    novoEstudante.setNome(nome);
-    novoEstudante.setMinibio(minibio);
+	    Estudante novoEstudante = new Estudante();
+	    novoEstudante.setNome(nome);
+	    novoEstudante.setMinibio(minibio);
 
-    Part filePart = request.getPart("foto");
-        
-    String caminhoParaBanco = null;
-    
+	    Part filePart = request.getPart("foto");
+	    String caminhoParaBanco = null;
 
-    if (filePart != null && filePart.getSize() > 0) {
-      String fileName =
-          java.nio.file.Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+	    if (filePart != null && filePart.getSize() > 0) {
+	      String fileName =
+	          java.nio.file.Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 
-      String uploadPath = getServletContext().getRealPath("/") + "uploads";
-      java.io.File uploadDir = new java.io.File(uploadPath);
-//      gera a pasta caso ela não exista..
-      if (!uploadDir.exists()) {
-        uploadDir.mkdir();
-      }
+	      // Garante o separador correto entre a raiz do app e a pasta uploads
+	      java.io.File uploadDir = new java.io.File(getServletContext().getRealPath("/"), "uploads");
+	      if (!uploadDir.exists()) {
+	        uploadDir.mkdirs();
+	      }
 
-      filePart.write(uploadPath + java.io.File.separator + fileName);
+	      java.io.File arquivoDestino = new java.io.File(uploadDir, fileName);
+	      filePart.write(arquivoDestino.getAbsolutePath());
 
-      caminhoParaBanco = "uploads/" + fileName;
-    }
+	      caminhoParaBanco = "uploads/" + fileName;
+	    }
 
-    novoEstudante.setFoto(caminhoParaBanco);
+	    if (idStr == null || idStr.trim().isEmpty()) {
+	      novoEstudante.setFoto(caminhoParaBanco);
+	      try {
+	        Estudante estudanteGravado = estudanteDAO.inserirEstudante(novoEstudante);
+	        System.out.println("Estudante gravado com sucesso! ID: " + estudanteGravado.getId());
+	      } catch (SQLException e) {
+	        throw new ServletException("Não foi possível gravar o estudante.", e);
+	      }
+	    } else {
+	      Long id = Long.parseLong(idStr);
+	      novoEstudante.setId(id);
+	      try {
+	        if (caminhoParaBanco == null) {
+	          Estudante estudanteAntigo = estudanteDAO.buscarEstudantePorId(id);
+	          novoEstudante.setFoto(estudanteAntigo.getFoto());
+	        } else {
+	          novoEstudante.setFoto(caminhoParaBanco);
+	        }
+	        estudanteDAO.atualizarEstudante(novoEstudante);
+	      } catch (SQLException e) {
+	        throw new ServletException("Não foi possível atualizar o estudante.", e);
+	      }
+	    }
+	    request.getSession().setAttribute("mensagem", "Estudante gravado com sucesso!");
+	    response.sendRedirect(request.getContextPath() + "/estudante?acao=criar");
+	}
 
-    try {
-      Estudante estudanteGravado = estudanteDAO.inserirEstudante(novoEstudante);
-
-      System.out.println("Estudante gravado com sucesso! ID gerado: " + estudanteGravado.getId());
-
-    } catch (SQLException e) {
-      throw new ServletException("Não foi possível gravar o estudante.", e);
-    }
-
-    request.setAttribute("mensagem", "Estudante gravado com sucesso!");
-
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
+  private void editarEstudante(HttpServletRequest request, HttpServletResponse response)
+      throws SQLException, ServletException, IOException {
+    long id = Long.parseLong(request.getParameter("id"));
+    Estudante estudante = estudanteDAO.buscarEstudantePorId(id);
+    request.setAttribute("estudante", estudante);
+    RequestDispatcher dispatcher =
+        request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
     dispatcher.forward(request, response);
   }
 }
