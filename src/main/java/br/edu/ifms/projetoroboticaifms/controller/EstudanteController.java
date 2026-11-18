@@ -142,72 +142,60 @@ public class EstudanteController extends HttpServlet {
   }
 
   private void gravarEstudante(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    // verifica estudante novo ou atualização de acordo com o id.
-    String idStr = request.getParameter("id");
-    String nome = request.getParameter("nome");
-    String minibio = request.getParameter("minibio");
+	      throws ServletException, IOException {
+	    String idStr = request.getParameter("id");
+	    String nome = request.getParameter("nome");
+	    String minibio = request.getParameter("minibio");
 
-    Estudante novoEstudante = new Estudante();
-    novoEstudante.setNome(nome);
-    novoEstudante.setMinibio(minibio);
+	    Estudante novoEstudante = new Estudante();
+	    novoEstudante.setNome(nome);
+	    novoEstudante.setMinibio(minibio);
 
-    Part filePart = request.getPart("foto");
+	    Part filePart = request.getPart("foto");
+	    String caminhoParaBanco = null;
 
-    String caminhoParaBanco = null;
+	    if (filePart != null && filePart.getSize() > 0) {
+	      String fileName =
+	          java.nio.file.Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 
-    if (filePart != null && filePart.getSize() > 0) {
-      String fileName =
-          java.nio.file.Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+	      // Garante o separador correto entre a raiz do app e a pasta uploads
+	      java.io.File uploadDir = new java.io.File(getServletContext().getRealPath("/"), "uploads");
+	      if (!uploadDir.exists()) {
+	        uploadDir.mkdirs();
+	      }
 
-      String uploadPath = getServletContext().getRealPath("/") + "uploads";
-      java.io.File uploadDir = new java.io.File(uploadPath);
-      //      gera a pasta caso ela não exista..
-      if (!uploadDir.exists()) {
-        uploadDir.mkdir();
-      }
+	      java.io.File arquivoDestino = new java.io.File(uploadDir, fileName);
+	      filePart.write(arquivoDestino.getAbsolutePath());
 
-      filePart.write(uploadPath + java.io.File.separator + fileName);
+	      caminhoParaBanco = "uploads/" + fileName;
+	    }
 
-      caminhoParaBanco = "uploads/" + fileName;
-    }
-
-    if (idStr == null || idStr.trim().isEmpty()) {
-
-      novoEstudante.setFoto(caminhoParaBanco);
-
-      try {
-        Estudante estudanteGravado = estudanteDAO.inserirEstudante(novoEstudante);
-
-        System.out.println("Estudante gravado com sucesso! ID gerado: " + estudanteGravado.getId());
-
-      } catch (SQLException e) {
-        throw new ServletException("Não foi possível gravar o estudante.", e);
-      }
-    } else {
-    	
-    	Long id = Long.parseLong(idStr);
-        novoEstudante.setId(id);      
-      
-      try {
-    	  if (caminhoParaBanco == null) {
-              Estudante estudanteAntigo = estudanteDAO.buscarEstudantePorId(id);
-              novoEstudante.setFoto(estudanteAntigo.getFoto()); 
-          } else {
-              novoEstudante.setFoto(caminhoParaBanco); // Substitui pela nova enviada
-          }
-
-          estudanteDAO.atualizarEstudante(novoEstudante);      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    }
-
-    request.setAttribute("mensagem", "Estudante gravado com sucesso!");
-
-    RequestDispatcher dispatcher =
-        request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
-    dispatcher.forward(request, response);
-  }
+	    if (idStr == null || idStr.trim().isEmpty()) {
+	      novoEstudante.setFoto(caminhoParaBanco);
+	      try {
+	        Estudante estudanteGravado = estudanteDAO.inserirEstudante(novoEstudante);
+	        System.out.println("Estudante gravado com sucesso! ID: " + estudanteGravado.getId());
+	      } catch (SQLException e) {
+	        throw new ServletException("Não foi possível gravar o estudante.", e);
+	      }
+	    } else {
+	      Long id = Long.parseLong(idStr);
+	      novoEstudante.setId(id);
+	      try {
+	        if (caminhoParaBanco == null) {
+	          Estudante estudanteAntigo = estudanteDAO.buscarEstudantePorId(id);
+	          novoEstudante.setFoto(estudanteAntigo.getFoto());
+	        } else {
+	          novoEstudante.setFoto(caminhoParaBanco);
+	        }
+	        estudanteDAO.atualizarEstudante(novoEstudante);
+	      } catch (SQLException e) {
+	        throw new ServletException("Não foi possível atualizar o estudante.", e);
+	      }
+	    }
+	    request.getSession().setAttribute("mensagem", "Estudante gravado com sucesso!");
+	    response.sendRedirect(request.getContextPath() + "/estudante?acao=criar");
+	}
 
   private void editarEstudante(HttpServletRequest request, HttpServletResponse response)
       throws SQLException, ServletException, IOException {

@@ -79,14 +79,12 @@ public class EstudanteDAO {
     ResultSet resultSet = statement.executeQuery(sql);
 
     while (resultSet.next()) {
-      long id = resultSet.getLong("id");
-      String nome = resultSet.getString("nome");
-      String minibio = resultSet.getString("minibio");
-      String foto = resultSet.getString("foto");
+      Estudante estudante = new Estudante();
+      estudante.setId(resultSet.getLong("id"));
+      estudante.setNome(resultSet.getString("nome"));
+      estudante.setMinibio(resultSet.getString("minibio"));
+      estudante.setFoto(resultSet.getString("foto"));
 
-      Estudante estudante = new Estudante(nome, minibio, foto);
-
-      estudante.setId(id);
       listaEstudantes.add(estudante);
     }
 
@@ -135,27 +133,29 @@ public class EstudanteDAO {
           estudante.setFoto(resultSet.getString("foto"));
         }
       }
-    }
+    }finally {desconectar();}
+  
     return estudante;
   }
 
   public Estudante atualizarEstudante(Estudante estudante) throws SQLException {
-    String sql = "UPDATE estudante SET nome = ?, minibio = ? , foto = ? WHERE id = ?";
+    String sql = "UPDATE estudante SET nome = ?, minibio = ?, foto = ? WHERE id = ?";
 
-    conectar();
-    try (PreparedStatement statement = connection.prepareStatement(sql)) {
+    try {
+      conectar();
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setString(1, estudante.getNome());
+        statement.setString(2, estudante.getMinibio());
+        statement.setString(3, estudante.getFoto());
+        statement.setLong(4, estudante.getId());
 
-      statement.setString(1, estudante.getNome());
-      statement.setString(2, estudante.getMinibio());
-      statement.setString(3, estudante.getFoto());
-      statement.setLong(4, estudante.getId());
-      
-      statement.executeUpdate();
-
+        statement.executeUpdate();
+      }
+      return estudante;
     } catch (SQLException e) {
       throw new SQLException("Erro ao atualizar o estudante de ID " + estudante.getId(), e);
+    } finally {
+      desconectar();
     }
-
-    return estudante;
   }
 }

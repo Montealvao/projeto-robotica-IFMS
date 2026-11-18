@@ -45,6 +45,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="alert"
 						aria-label="<fmt:message key='estudante.botao.fechar' />"></button>
 				</div>
+				<c:remove var="mensagem" scope="session" />
 			</c:if>
 
 			<div class="row g-4">
@@ -53,7 +54,7 @@
 						<form method="post"
 							action="${pageContext.request.contextPath}/estudante?acao=salvar"
 							enctype="multipart/form-data">
-							<input type="hidden" id="id-estudante" value="${estudante.id }">
+							<input type="hidden" id="id-estudante" name="id" value="${estudante.id }">
 
 							<div class="mb-3">
 								<label for="nome" class="form-label"><fmt:message
@@ -68,7 +69,7 @@
 										key="estudante.label.minibio" /></label>
 								<textarea class="form-control" id="minibio" rows="4"
 									placeholder="<fmt:message key='estudante.placeholder.minibio' />"
-									name="minibio" value="<c:out value='${estudante.minibio}' />"></textarea>
+									name="minibio"><c:out value="${estudante.minibio}" /></textarea>
 							</div>
 
 							<div class="mb-4">
@@ -90,7 +91,7 @@
 									</div>
 
 									<div class="flex-grow-1" style="min-width: 14rem;">
-										<input type="file" class="form-control" id="foto">
+										<input type="file" class="form-control" id="foto" name="foto" accept="image/*">
 										<div class="form-text">
 											<fmt:message key="estudante.help.foto" />
 										</div>
