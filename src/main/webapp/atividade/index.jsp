@@ -1,88 +1,149 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>Listagem de Atividades</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-</head>
-<body>
-	<jsp:include page="/WEB-INF/includes/nav.jsp" />
 
-	<div class="container mt-4">
-		<h2 class="mb-3">
-			<fmt:message key="atividade.titulo.listar" />
-		</h2>
+<t:layout titulo="index">
 
-		<c:if test="${not empty param.msg}">
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
-				Aviso do sistema: ${param.msg}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar">
-				</button>
+	<jsp:include page="/WEB-INF/includes/header.jsp" />
+
+	<header class="page-head circuit-bg">
+		<div class="container">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Início</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Atividades</li>
+				</ol>
+			</nav>
+			<span class="sec-label">// Registros</span>
+			<h1>Atividades</h1>
+			<p>Projetos, estágios, oficinas, eventos e competições
+				organizados por semestre.</p>
+		</div>
+	</header>
+
+	<section class="block">
+		<div class="container">
+			<div class="filter-bar">
+				<div class="row g-2 align-items-end">
+					<div class="col-md-4">
+						<label for="busca-atividade" class="form-label">Buscar</label><input
+							type="text" class="form-control" id="busca-atividade"
+							placeholder="Título da atividade">
+					</div>
+
+					<c:forEach var="atividade" items="${listaAtividades}">
+
+					</c:forEach>
+
+					<div class="col-md-2">
+						<label for="filtro-tipo" class="form-label">Tipo</label><select
+							class="form-select" id="filtro-tipo"><option>Todos</option>
+							<option>Projeto</option>
+							<option>Estágio</option>
+							<option>Tarefa</option>
+							<option>Oficina</option>
+							<option>Palestra</option>
+							<option>Evento</option>
+							<option>Competição</option>
+							<option>Visita</option></select>
+					</div>
+
+					<div class="col-md-2">
+						<label for="filtro-situacao" class="form-label">Situação</label><select
+							class="form-select" id="filtro-situacao"><option>Todas</option>
+							<option>Planejada</option>
+							<option>Em andamento</option>
+							<option>Concluída</option></select>
+					</div>
+					<div class="col-md-2">
+						<label for="filtro-per" class="form-label">Período</label><select
+							class="form-select" id="filtro-per"><option>Todos</option>
+							<option>2026/2</option>
+							<option>2026/1</option>
+							<option>2025</option></select>
+					</div>
+					<div class="col-md-2 d-grid">
+						<button type="button" class="btn btn-neon">
+							<i class="fa-solid fa-magnifying-glass me-1"></i>Filtrar
+						</button>
+					</div>
+				</div>
 			</div>
-		</c:if>
-		
-		<c:if test="${empty listaAtividades}">
-			<div class="alert alert-info" role="alert">
-				<fmt:message key="estudante.titulo.sem_cadastro" />
+			<h2 class="semester">
+				2026/2<span>segundo semestre</span>
+			</h2>
+
+			<c:forEach var="atividade" items="${listaAtividades}">
+			
+				<div class="row g-4">
+					<div class="col-md-6">
+						<div class="tcard">
+							<div class="d-flex justify-content-between mb-2">
+								<span class="badge badge-type px-2 py-1">Projeto</span><span
+									class="badge badge-status px-2 py-1"><c:out
+										value="${atividade.getSituacao()}" /></span>
+							</div>
+							<h3>
+								<c:out value="${atividade.getTitulo()}" />
+								— 2026
+							</h3>
+							<p>
+								<c:out value="${atividade.getDescricao()}" />
+							</p>
+							<hr style="border-color: var(--line); opacity: 1">
+							<div class="d-flex justify-content-between small text-muted-2">
+								<span><i class="fa-regular fa-calendar me-1"></i>
+								<c:out value="${atividade.getDataInicio()}" /> · <c:out
+										value="${atividade.getDataFim()}" /></span> <a
+									href="${pageContext.request.contextPath}/atividade/atividade-detalhe.jsp">Detalhes
+									<i class="fa-solid fa-arrow-right"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</c:forEach>
+
+			<h2 class="semester">
+				2025<span></span>
+			</h2>
+			<div class="row g-4">
+				<div class="col-md-6">
+					<div class="tcard">
+						<div class="d-flex justify-content-between mb-2">
+							<span class="badge badge-type px-2 py-1">Competição</span><span
+								class="badge badge-status px-2 py-1"
+								style="color: var(--neon); background: var(--neon-dim); border-color: rgba(25, 230, 180, .35)">Concluída</span>
+						</div>
+						<h3>OBR — Etapa estadual</h3>
+						<p>Participação na Olimpíada Brasileira de Robótica,
+							modalidade artística.</p>
+						<hr style="border-color: var(--line); opacity: 1">
+						<div class="d-flex justify-content-between small text-muted-2">
+							<span><i class="fa-regular fa-calendar me-1"></i>2025</span> <a
+								href="#">Detalhes <i class="fa-solid fa-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
 			</div>
+			<nav class="mt-4" aria-label="Paginação">
+				<ul class="pagination justify-content-center mb-0">
+					<li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+					<li class="page-item active"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">Próxima</a></li>
+				</ul>
+			</nav>
 
-		</c:if>
+		</div>
+	</section>
 
-		<a class="btn btn-primary mb-3" href="${pageContext.request.contextPath}/atividade?acao=criar">
-			<fmt:message key="atividade.titulo.criar" />
-		</a>
-		
-		<c:if test="${not empty listaAtividades}">
-			<div class="table-responsive">
-				<table class="table table-striped table-hover table-bordered">
-					<thead class="table-dark">
-						<tr>
-							<th><fmt:message key="atividade.coluna.id" /></th>
-							<th><fmt:message key="atividade.coluna.titulo" /></th>
-							<th><fmt:message key="atividade.coluna.tipo" /></th>
-							<th><fmt:message key="atividade.coluna.descricao" /></th>
-							<th><fmt:message key="atividade.coluna.data_inicio" /></th>
-							<th><fmt:message key="atividade.coluna.data_fim" /></th>
-							<th><fmt:message key="atividade.coluna.situacao" /></th>
-							<th><fmt:message key="atividade.coluna.coordenador_id" /></th>
-							<th><fmt:message key="atividade.coluna.acoes" /></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="atividade" items="${listaAtividades}">
-							<tr>
-								<td><c:out value="${atividade.getId()}" /></td>
-								<td><c:out value="${atividade.getTitulo()}" /></td>
-								<td><c:out value="${atividade.getTipo()}" /></td>
-								<td><c:out value="${atividade.getDescricao()}" /></td>
-								<td><c:out value="${atividade.getDataInicio()}" /></td>
-								<td><c:out value="${atividade.getDataFim()}" /></td>
-								<td><c:out value="${atividade.getSituacao()}" /></td>
-								<td><c:out value="${atividade.getCoordenadorId()}" /></td>
-								<td>
-									<a href="${pageContext.request.contextPath}/atividade?acao=excluir&id=${atividade.getId()}"
-										class="btn btn-danger btn-sm"
-										onclick="return confirm('A atividade ${atividade.getTitulo()} será excluída permanetemente.');">
-										<fmt:message key="atividade.botao.apagar" />
-									</a>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</c:if>
-	</div>
+	<jsp:include page="/WEB-INF/includes/footer.jsp" />
 
-	<script src="${pageContext.request.contextPath}/resources/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/resources/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</t:layout>

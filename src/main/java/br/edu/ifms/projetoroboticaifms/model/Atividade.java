@@ -7,10 +7,10 @@ public class Atividade {
 	private String titulo;
 	private String tipo;
 	private String descricao;
-	private Date data_inicio;
-	private Date data_fim;
+	private Date dataInicio;
+	private Date dataFim;
 	private String situacao;
-	private Long coordenador_id;
+	private Long coordenadorId;
 	
 	public Atividade(){}
 	
@@ -18,18 +18,18 @@ public class Atividade {
 			String titulo,
 			String tipo, 
 			String descricao, 
-			Date data_inicio, 
-			Date data_fim,
+			Date dataInicio, 
+			Date dataFim,
 			String situacao,
-			Long coordenador_id) 
+			Long coordenadorId) 
 	{
 		this.titulo = titulo;
 		this.tipo = tipo;
 		this.descricao = descricao;
-		this.data_inicio = data_inicio;
-		this.data_fim =  data_fim;
+		this.dataInicio = dataInicio;
+		this.dataFim =  dataFim;
 		this.situacao = situacao;
-		this.coordenador_id = coordenador_id;
+		this.coordenadorId = coordenadorId;
 	}
 	
 	public Long getId() {
@@ -65,19 +65,19 @@ public class Atividade {
 	}
 	
 	public Date getDataInicio() {
-		return this.data_inicio;
+		return this.dataInicio;
 	}
 	
-	public Date setDataIncio(Date data_inicio) {
-		return this.data_inicio = data_inicio;
+	public Date setDataInicio(Date dataInicio) {
+		return this.dataInicio = dataInicio;
 	}
 	
 	public Date getDataFim() {
-		return this.data_fim;
+		return this.dataFim;
 	}
 	
-	public Date setDataFim(Date data_fim) {
-		return this.data_fim = data_fim;
+	public Date setDataFim(Date dataFim) {
+		return this.dataFim = dataFim;
 	}
 	
 	public String getSituacao() {
@@ -89,10 +89,10 @@ public class Atividade {
 	}
 	
 	public Long getCoordenadorId() {
-		return this.coordenador_id;
+		return this.coordenadorId;
 	}
 	
-	public Long setCoordenadorId(Long coordenador_id) {
-		return this.coordenador_id = coordenador_id;
+	public Long setCoordenadorId(Long coordenadorId) {
+		return this.coordenadorId = coordenadorId;
 	}
 }

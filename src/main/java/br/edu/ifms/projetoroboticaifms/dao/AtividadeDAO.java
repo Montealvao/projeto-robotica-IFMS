@@ -77,18 +77,17 @@ public class AtividadeDAO {
 		  ResultSet resultSet = statement.executeQuery(sql);
 
 		  while (resultSet.next()) {
-			  long id = resultSet.getLong("id");
-			  String titulo = resultSet.getString("titulo");
-		      String tipo = resultSet.getString("tipo");
-		      String descricao = resultSet.getString("descricao");
-		      Date data_inicio = resultSet.getDate("data_inicio");
-			  Date data_fim = resultSet.getDate("data_fim");
-			  String situacao = resultSet.getString("situacao");
-			  Long coordenador_id = resultSet.getLong("coordenador_id");
-
-		      Atividade atividade = new Atividade(titulo, tipo, descricao, data_inicio, data_fim, situacao, coordenador_id);
-
-		      atividade.setId(id);
+		      Atividade atividade = new Atividade();
+		      
+		      atividade.setId(resultSet.getLong("id"));
+		      atividade.setTitulo(resultSet.getString("titulo"));
+		      atividade.setTipo(resultSet.getString("tipo"));
+		      atividade.setDescricao(resultSet.getString("descricao"));
+		      atividade.setDataInicio(resultSet.getDate("data_inicio"));
+		      atividade.setDataFim(resultSet.getDate("data_fim"));
+		      atividade.setSituacao(resultSet.getString("situacao"));
+		      atividade.setCoordenadorId(resultSet.getLong("coordenador_id"));
+		      
 		      listaAtividades.add(atividade);
 		  }
 

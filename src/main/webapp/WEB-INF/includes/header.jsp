@@ -19,7 +19,7 @@
                 <li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/"><fmt:message key="navbar.inicio" /></a></li>
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/publico/sobre.jsp"><fmt:message key="navbar.sobre" /></a></li>
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/estudante?acao=estudante"><fmt:message key="navbar.estudantes" /></a></li>
-                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/atividade/index.example.jsp"><fmt:message key="navbar.atividades" /></a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/atividade/index.jsp"><fmt:message key="navbar.atividades" /></a></li>
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/participacao/index.jsp"><fmt:message key="navbar.participacoes" /></a></li>
                 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/publico/contato.jsp"><fmt:message key="navbar.contato" /></a></li>
 
