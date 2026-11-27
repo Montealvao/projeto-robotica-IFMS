@@ -172,14 +172,13 @@ private void apagarEstudante(HttpServletRequest request, HttpServletResponse res
       Estudante estudanteGravado = estudanteDAO.inserirEstudante(novoEstudante);
 
       System.out.println("Estudante gravado com sucesso! ID gerado: " + estudanteGravado.getId());
-
+      
     } catch (SQLException e) {
       throw new ServletException("Não foi possível gravar o estudante.", e);
     }
 
-    request.setAttribute("mensagem", "Estudante gravado com sucesso!");
+    request.getSession().setAttribute("mensagemSucesso", "Estudante adicionado com sucesso!");
+    response.sendRedirect(request.getContextPath() + "/admin?acao=criar");
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/estudante/formulario-estudante.jsp");
-    dispatcher.forward(request, response);
   }
 }

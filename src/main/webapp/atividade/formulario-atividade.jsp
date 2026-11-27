@@ -10,32 +10,42 @@
 
 	<header class="page-head circuit-bg">
     <div class="container">
-      <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">Início</a></li><li class="breadcrumb-item"><a href="#">Gerenciar</a></li><li class="breadcrumb-item active" aria-current="page">Nova atividade</li></ol></nav>
+      <nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/">Início</a></li><li class="breadcrumb-item"><a href="#">Gerenciar</a></li><li class="breadcrumb-item active" aria-current="page">Nova atividade</li></ol></nav>
       <span class="sec-label">// Gerenciar</span>
       <h1>Nova atividade</h1>
       <p>Registre um projeto, estágio, oficina, evento ou outra atividade do laboratório.</p>
     </div>
   </header>
 
+    <jsp:include page="/WEB-INF/includes/mensagens.jsp" />
+
   <section class="block">
     <div class="container">
-      <!-- Mensagens de sucesso e erro (exemplos de layout; exibir condicionalmente) -->
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <i class="fa-solid fa-circle-check me-2"></i>Mensagem de sucesso de exemplo.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-      </div>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <i class="fa-solid fa-triangle-exclamation me-2"></i>Mensagem de erro de exemplo.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-      </div>
       <div class="row g-4">
         <div class="col-lg-8">
           <div class="form-panel">
             <form>
               <div class="row g-3">
-                <div class="col-md-8"><label for="titulo" class="form-label">Título *</label><input type="text" class="form-control" id="titulo" placeholder="Título da atividade"></div>
-                <div class="col-md-4"><label for="tipo" class="form-label">Tipo *</label><select class="form-select" id="tipo"><option selected>Selecione</option><option>Projeto</option><option>Estágio</option><option>Tarefa</option><option>Oficina</option><option>Palestra</option><option>Evento</option><option>Competição</option><option>Visita</option></select></div>
-                <div class="col-12"><label for="descricao" class="form-label">Descrição</label><textarea class="form-control" id="descricao" rows="4" placeholder="Descreva a atividade"></textarea></div>
+                <div class="col-md-8"><label for="titulo" class="form-label">Título *</label>
+                <input name="titulo" type="text" class="form-control" id="titulo" placeholder="Título da atividade">
+                </div>
+                <div class="col-md-4">
+                <label for="tipo" class="form-label">Tipo *</label>
+                <select name="tipo" class="form-select" id="tipo">
+                <option selected>Selecione</option>
+                <option >Projeto</option>
+                <option>Estágio</option>
+                <option>Tarefa</option>
+                <option>Oficina</option>
+                <option>Palestra</option>
+                <option>Evento</option>
+                <option>Competição</option>
+                <option>Visita</option>
+                </select>
+                </div>
+                
+                <div class="col-12"><label for="descricao" class="form-label">Descrição</label>
+                <textarea neme="descricao" class="form-control" id="descricao" rows="4" placeholder="Descreva a atividade"></textarea></div>
                 <div class="col-md-4"><label for="inicio" class="form-label">Início</label><input type="date" class="form-control" id="inicio"></div>
                 <div class="col-md-4"><label for="fim" class="form-label">Término</label><input type="date" class="form-control" id="fim"></div>
                 <div class="col-md-4"><label for="situacao" class="form-label">Situação *</label><select class="form-select" id="situacao"><option selected>Selecione</option><option>Planejada</option><option>Em andamento</option><option>Concluída</option></select></div>

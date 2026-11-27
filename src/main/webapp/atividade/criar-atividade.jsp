@@ -53,6 +53,7 @@
 				<input type="text" class="form-control" name="descricao">
 			</div>
 			<div class="mb-3">
+			
 				<label for="data_inicio" class="form-label">
 					<fmt:message key="atividade.coluna.data_inicio" />
 				</label> 
